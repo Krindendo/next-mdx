@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import { cn } from "../lib/utils";
 import { MdxCard } from "./mdx-card";
 import { Callout } from "./callout";
+import MDXDocsLayout from "./mdx-layout-docs";
 
 export const ConvertMdxToComponents = {
   h1: ({ className, ...props }) => (
@@ -146,13 +147,5 @@ export const ConvertMdxToComponents = {
   ),
   Callout,
   Card: MdxCard,
-  PageHeader: ({ className, ...props }) => {
-    console.log("metadata", props.metadata);
-    return (
-      <div>
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
-      </div>
-    );
-  },
+  MDXDocsLayout: MDXDocsLayout,
 } satisfies MDXComponents;

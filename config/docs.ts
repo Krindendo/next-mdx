@@ -7,5 +7,15 @@ interface DocsConfig {
 
 export const docsConfig: DocsConfig = {
   mainNav: [{ title: "Documentation", href: "/docs" }],
-  sidebarNavDocs: [],
+  sidebarNavDocs: [
+    {
+      title: "Getting Started",
+      items: [
+        {
+          title: "Introduction",
+          href: "/docs",
+        },
+      ],
+    },
+  ],
 };

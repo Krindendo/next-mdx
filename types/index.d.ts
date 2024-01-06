@@ -1,4 +1,5 @@
 import { Icons } from "@/components/icons";
+import { Items } from "@/components/site-provider";
 
 export type NavItem = {
   title: string;
@@ -33,3 +34,5 @@ export type SiteConfig = {
     github: string;
   };
 };
+
+export interface TableOfContents extends Items {}
