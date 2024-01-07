@@ -3,7 +3,7 @@
 import * as React from "react";
 import { createStore, StoreApi, useStore } from "zustand";
 
-interface Item {
+export interface Item {
   title: string;
   url: string;
   items?: Item[];
@@ -206,15 +206,16 @@ function useVisibleSections(
   }, [sectionIds]);
 }
 
-export function InjectTOC({ toc }: { toc: Items }) {
+export function InjectTOC({ toc }: { toc: Item[] }) {
   const store = useSectionStore();
   const setSections = useStore(store, (s) => s.setSections);
   const setSectionIds = useStore(store, (s) => s.setSectionIds);
   const setVisibleSections = useStore(store, (s) => s.setVisibleSections);
 
   React.useEffect(() => {
-    setSections(toc);
-    setSectionIds(toc);
+    const newToc: Items = { items: toc };
+    setSections(newToc);
+    setSectionIds(newToc);
     setVisibleSections([]);
   }, [toc, setSections, setSectionIds, setVisibleSections]);
 

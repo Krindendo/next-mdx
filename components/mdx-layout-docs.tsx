@@ -1,12 +1,11 @@
 import "@/styles/mdx.css";
 import { DocsPageHeader } from "./docs-page-header";
-import { InjectTOC } from "./site-provider";
-import { TableOfContents } from "@/types";
+import { InjectTOC, Item } from "./site-provider";
 
 interface DocsConfig {
   title: string;
   description: string;
-  toc: TableOfContents;
+  toc: Item[];
 }
 
 interface DocsLayoutProps {
