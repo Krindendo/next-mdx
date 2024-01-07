@@ -16,6 +16,24 @@ import { useSectionStore } from "./site-provider";
 
 const SIDEBAR_DEEP_LEVEL = 2;
 
+function ActivePageMarker({
+  group,
+  pathname,
+}: {
+  group: SidebarNavItem;
+  pathname: string;
+}) {
+  let itemHeight = 28;
+  let offset = 4;
+  let activePageIndex =
+    group.items?.findIndex((item) => item.href === pathname) ?? 0;
+  let top = offset + activePageIndex * itemHeight;
+
+  return (
+    <div className="absolute left-2 h-6 w-px bg-orange-500" style={{ top }} />
+  );
+}
+
 interface NavigationGroupProps {
   group: SidebarNavItem;
   className?: string;
@@ -26,12 +44,18 @@ function NavigationGroup({ group, className }: NavigationGroupProps) {
   const pathname = usePathname();
   const sections = useStore(store, (s) => s.sections);
 
+  let isActiveGroup =
+    group.items?.findIndex((link) => link.href === pathname) !== -1;
+
   return (
     <li className={cn("relative mt-6", className)}>
       <h2 className="text-xs font-semibold text-zinc-900 dark:text-white">
         {group.title}
       </h2>
       <div className="relative mt-3 pl-2">
+        {isActiveGroup && (
+          <ActivePageMarker group={group} pathname={pathname} />
+        )}
         <ul role="list" className="border-l border-transparent">
           {group.items?.map((item) => (
             <li key={item.href} className="relative">
