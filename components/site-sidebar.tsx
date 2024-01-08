@@ -62,7 +62,9 @@ function NavigationGroup({ group, className }: NavigationGroupProps) {
               <NavLink href={item.href || "#"} active={item.href === pathname}>
                 {item.title}
               </NavLink>
-              <Tree tree={sections} />
+              {item.href === pathname && sections.items?.length ? (
+                <Tree tree={sections} />
+              ) : null}
             </li>
           ))}
         </ul>
