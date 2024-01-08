@@ -12,6 +12,7 @@ import {
   useIsInsideMobileNavigation,
   useMobileNavigationStore,
 } from "@/components/site-sidebar-mobile";
+import { Logo } from "./logo";
 
 interface SiteHeaderProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
@@ -43,7 +44,7 @@ export const SiteHeader = React.forwardRef<HTMLDivElement, SiteHeaderProps>(
         />
         <div className="flex items-center gap-5 lg:hidden">
           <SiteSidebarMobile />
-          Next MDX
+          <Logo />
         </div>
         <div className="ml-auto flex items-center gap-5">
           <nav className="hidden md:block">

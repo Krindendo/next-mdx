@@ -2,7 +2,7 @@ import {
   Check,
   ChevronLeft,
   ChevronRight,
-  Globe2,
+  NotebookText,
   Laptop,
   Loader2,
   Menu,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 export const Icons = {
-  logo: Globe2,
+  logo: NotebookText,
   close: X,
   spinner: Loader2,
   chevronLeft: ChevronLeft,
