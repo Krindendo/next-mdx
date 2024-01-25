@@ -10,18 +10,25 @@ interface DocsConfig {
 
 interface DocsLayoutProps {
   children: React.ReactNode;
-  doc: DocsConfig;
+  toc: Item[];
+  title: string;
+  description: string;
 }
 
-export default function MDXDocsLayout({ children, doc }: DocsLayoutProps) {
+export default function MDXDocsLayout({
+  children,
+  toc,
+  title,
+  description,
+}: DocsLayoutProps) {
   return (
     <div className="container flex-1">
       <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid">
         <div className="mx-auto w-full min-w-0">
-          <DocsPageHeader heading={doc.title} text={doc.description} />
+          <DocsPageHeader heading={title} text={description} />
           <div className="pb-12 pt-8">{children}</div>
         </div>
-        <InjectTOC toc={doc.toc} />
+        <InjectTOC toc={toc} />
       </main>
     </div>
   );

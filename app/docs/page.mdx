@@ -3,14 +3,16 @@ export const metadata = {
   description: "Basic stuff that are interesting",
 };
 
-export const layoutData = {
-  title: metadata.title,
-  description: metadata.description,
-  toc: [{ url: "#usestate", title: "useState" }],
-};
-
 export default function MDXPage({ children }) {
-  return <MDXDocsLayout doc={layoutData}>{children}</MDXDocsLayout>;
+  return (
+    <MDXDocsLayout
+      toc={toc}
+      title={metadata.title}
+      description={metadata.description}
+    >
+      {children}
+    </MDXDocsLayout>
+  );
 }
 
 Inside the documentation, there will be only essential code examples or shorter definitions that will help you work faster on a project.

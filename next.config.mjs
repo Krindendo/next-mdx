@@ -3,6 +3,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import makeToc from "./lib/makeToc.mjs";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,7 +15,7 @@ const nextConfig = {
 const withMDX = createMDX({
   // Add markdown plugins here, as desired
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, makeToc],
     rehypePlugins: [
       rehypeSlug,
       [
