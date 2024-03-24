@@ -2,11 +2,13 @@
 node_modules
 npm-debug.log
 .npm
-.env.local
 
 # Next.js Build Output
 .next
 build
+
+# Next.js Generated Files
+public/static/documents
 
 # Jest
 coverage
@@ -32,5 +34,9 @@ cache
 # TypeScript
 tsconfig.tsbuildinfo
 
-# Sentry Config File
-.sentryclirc
+# Metadata Files
+CODEOWNERS
+
+# Prettier's Handlebar parser is limited and chokes on some syntax features
+# https://github.com/prettier/prettier/issues/11834
+scripts/release-post/template.hbs

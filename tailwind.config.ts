@@ -1,13 +1,17 @@
 import type { Config } from "tailwindcss";
 import { fontFamily, screens } from "tailwindcss/defaultTheme";
 
-const config: Config = {
+export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{tsx,mdx}",
+    "./components/**/*.tsx",
+    "./providers/**/*.tsx",
+    "./layouts/**/*.tsx",
+    "./.storybook/preview.tsx",
+    "./.storybook/main.ts",
+    "./app/**/*.tsx",
   ],
-  darkMode: ["class"],
+
   theme: {
     container: {
       center: true,
@@ -113,6 +117,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-};
-export default config;
+  darkMode: ["class", '[data-theme="dark"]'],
+  plugins: [
+    require("@savvywombat/tailwindcss-grid-areas"),
+    require("@tailwindcss/container-queries"),
+  ],
+} satisfies Config;
