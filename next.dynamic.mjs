@@ -10,13 +10,10 @@ import { VFile } from "vfile";
 
 import { BASE_URL, BASE_PATH, IS_DEVELOPMENT } from "./next.constants.mjs";
 import {
-  IGNORED_ROUTES,
-  DYNAMIC_ROUTES,
   PAGE_METADATA,
 } from "./next.dynamic.constants.mjs";
 import { getMarkdownFiles } from "./next.helpers.mjs";
 import { siteConfig } from "./next.json.mjs";
-import { availableLocaleCodes, defaultLocale } from "./next.locales.mjs";
 import { compileMDX } from "./next.mdx.compiler.mjs";
 
 // This is the combination of the Application Base URL and Base PATH
@@ -28,8 +25,7 @@ const getPathname = (path = []) => path.join("/");
 // This maps a pathname into an actual route object that can be used
 // we use a platform-specific separator to split the pathname
 // since we're using filepaths here and not URL paths
-const mapPathToRoute = (locale = defaultLocale.code, path = "") => ({
-  locale,
+const mapPathToRoute = (path = "") => ({
   path: path.split(sep),
 });
 
@@ -56,7 +52,7 @@ const getDynamicRouter = async () => {
 
   const websitePages = await getMarkdownFiles(
     process.cwd(),
-    `pages/${defaultLocale.code}`
+    `pages`
   );
 
   websitePages.forEach((filename) => {
@@ -75,20 +71,20 @@ const getDynamicRouter = async () => {
     pathnameToFilename.set(pathname, filename);
   });
 
-  /**
+    /**
    * This method returns a list of all routes that exist for a given locale
    *
    * @param {string} locale
    * @returns {Array<string>}
    */
-  const getRoutesByLanguage = async (locale = defaultLocale.code) => {
-    const shouldIgnoreStaticRoute = (pathname) =>
-      IGNORED_ROUTES.every((e) => !e({ pathname, locale }));
-
-    return [...pathnameToFilename.keys()]
-      .filter(shouldIgnoreStaticRoute)
-      .concat([...DYNAMIC_ROUTES.keys()]);
-  };
+    const getRoutes = async () => {
+      const shouldIgnoreStaticRoute = pathname =>
+        IGNORED_ROUTES.every(e => !e({ pathname }));
+  
+      return [...pathnameToFilename.keys()]
+        .filter(shouldIgnoreStaticRoute)
+        .concat([...DYNAMIC_ROUTES.keys()]);
+    };
 
   /**
    * This method attempts to retrieve either a localized Markdown file
@@ -137,7 +133,6 @@ const getDynamicRouter = async () => {
       // We then attempt to retrieve the source version of the file as there is no localised version
       // of the file and we set it on the cache to prevent future checks of the same locale for this file
       const { source: fileContent } = await _getMarkdownFile(
-        defaultLocale.code,
         pathname
       );
 
@@ -189,10 +184,10 @@ const getDynamicRouter = async () => {
    * @param {string} path
    * @returns {import('next').Metadata}
    */
-  const _getPageMetadata = async (locale = defaultLocale.code, path = "") => {
+  const _getPageMetadata = async ( path = "") => {
     const pageMetadata = { ...PAGE_METADATA };
 
-    const { source = "" } = await getMarkdownFile(locale, path);
+    const { source = "" } = await getMarkdownFile(path);
 
     const { data } = matter(source);
 
@@ -205,35 +200,24 @@ const getDynamicRouter = async () => {
     const getUrlForPathname = (l, p) =>
       `${baseUrlAndPath}/${l}${p ? `/${p}` : ""}`;
 
-    pageMetadata.alternates.canonical = getUrlForPathname(locale, path);
+    pageMetadata.alternates.canonical = getUrlForPathname(path);
 
     pageMetadata.alternates.languages["x-default"] = getUrlForPathname(
-      defaultLocale.code,
       path
     );
-
-    availableLocaleCodes.forEach((currentLocale) => {
-      pageMetadata.alternates.languages[currentLocale] = getUrlForPathname(
-        currentLocale,
-        path
-      );
-      pageMetadata.openGraph.images = [
-        `${currentLocale}/next-data/og?title=${data.title}&type=${data.category ?? "announcement"}`,
-      ];
-    });
 
     return pageMetadata;
   };
 
   // Creates a Cached Version of the Page Metadata Context
-  const getPageMetadata = cache(async (locale, path) => {
-    return await _getPageMetadata(locale, path);
+  const getPageMetadata = cache(async (path) => {
+    return await _getPageMetadata(path);
   });
 
   return {
     mapPathToRoute,
     getPathname,
-    getRoutesByLanguage,
+    getRoutes,
     getMDXContent,
     getMarkdownFile,
     getPageMetadata,
