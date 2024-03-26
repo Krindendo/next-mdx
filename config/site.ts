@@ -1,4 +1,5 @@
-import { SiteConfig } from "@/types";
+import type { SiteConfig } from "@/types";
+
 import { getAbsoluteUrl, getBaseUrl } from "@/lib/utils";
 
 export const siteConfig: SiteConfig = {
