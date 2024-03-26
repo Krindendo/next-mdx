@@ -14,7 +14,7 @@ export const OPEN_SANS = Open_Sans({
 // This configures the Next.js Font for Cal Sans
 // We then export a variable and class name to be used
 // within Tailwind (tailwind.config.ts) and Storybook (preview.js)
-export const Cal_Sans = localFont({
-  src: "../assets/fonts/CalSans-SemiBold.woff2",
+export const CAL_SANS = localFont({
+  src: "./public/static/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
 })

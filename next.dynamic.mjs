@@ -10,7 +10,9 @@ import { VFile } from "vfile";
 
 import { BASE_URL, BASE_PATH, IS_DEVELOPMENT } from "./next.constants.mjs";
 import {
+  IGNORED_ROUTES,
   PAGE_METADATA,
+  DYNAMIC_ROUTES
 } from "./next.dynamic.constants.mjs";
 import { getMarkdownFiles } from "./next.helpers.mjs";
 import { siteConfig } from "./next.json.mjs";
@@ -74,7 +76,6 @@ const getDynamicRouter = async () => {
     /**
    * This method returns a list of all routes that exist for a given locale
    *
-   * @param {string} locale
    * @returns {Array<string>}
    */
     const getRoutes = async () => {
@@ -91,11 +92,10 @@ const getDynamicRouter = async () => {
    * or the English version of the Markdown file if no localized version exists
    * and then returns the contents of the file and the name of the file (not the path)
    *
-   * @param {string} locale
    * @param {string} pathname
    * @returns {Promise<{ source: string; filename: string }>}
    */
-  const _getMarkdownFile = async (locale = "", pathname = "") => {
+  const _getMarkdownFile = async ( pathname = "") => {
     const normalizedPathname = normalize(pathname).replace(".", "");
 
     // This verifies if the given pathname actually exists on our Map
@@ -108,9 +108,9 @@ const getDynamicRouter = async () => {
       // We verify if our Markdown cache already has a cache entry for a localized
       // version of this file, because if not, it means that either
       // we did not cache this file yet or there is no localized version of this file
-      if (cachedMarkdownFiles.has(`${locale}${normalizedPathname}`)) {
+      if (cachedMarkdownFiles.has(`${normalizedPathname}`)) {
         const fileContent = cachedMarkdownFiles.get(
-          `${locale}${normalizedPathname}`
+          `${normalizedPathname}`
         );
 
         return { source: fileContent, filename };
@@ -120,12 +120,12 @@ const getDynamicRouter = async () => {
       // exists within our file system and if it does we set it on the cache
       // and return the current fetched result; If the file does not exist
       // we fallback to the English source
-      if (existsSync(join(filePath, locale, filename))) {
-        filePath = join(filePath, locale, filename);
+      if (existsSync(join(filePath, filename))) {
+        filePath = join(filePath, filename);
 
         const fileContent = await readFile(filePath, "utf8");
 
-        cachedMarkdownFiles.set(`${locale}${normalizedPathname}`, fileContent);
+        cachedMarkdownFiles.set(`${normalizedPathname}`, fileContent);
 
         return { source: fileContent, filename };
       }
@@ -138,7 +138,7 @@ const getDynamicRouter = async () => {
 
       // We set the source file on the localized cache to prevent future checks
       // of the same locale for this file and improve read performance
-      cachedMarkdownFiles.set(`${locale}${normalizedPathname}`, fileContent);
+      cachedMarkdownFiles.set(`${normalizedPathname}`, fileContent);
 
       return { source: fileContent, filename };
     }
@@ -147,8 +147,8 @@ const getDynamicRouter = async () => {
   };
 
   // Creates a Cached Version of the Markdown File Resolver
-  const getMarkdownFile = cache(async (locale, pathname) => {
-    return await _getMarkdownFile(locale, pathname);
+  const getMarkdownFile = cache(async (pathname) => {
+    return await _getMarkdownFile(pathname);
   });
 
   /**
@@ -180,7 +180,6 @@ const getDynamicRouter = async () => {
    * This method generates the Next.js App Router Metadata
    * that can be used for each page to provide metadata
    *
-   * @param {string} locale
    * @param {string} path
    * @returns {import('next').Metadata}
    */

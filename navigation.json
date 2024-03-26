@@ -1,0 +1,46 @@
+{
+  "topNavigation": {
+    "about": {
+      "link": "/about",
+      "label": "components.containers.navBar.links.about"
+    },
+    "blog": {
+      "link": "/blog",
+      "label": "components.containers.navBar.links.blog"
+    },
+    "docs": {
+      "link": "https://nodejs.org/docs/latest/api/",
+      "label": "components.containers.navBar.links.docs",
+      "target": "_blank"
+    }
+  },
+  "footerLinks": [
+    {
+      "link": "https://openjsf.org/",
+      "text": "components.containers.footer.links.openJS"
+    }
+  ],
+  "socialLinks": [
+    {
+      "icon": "github",
+      "link": "https://github.com/nodejs/node",
+      "alt": "GitHub"
+    },
+    {
+      "icon": "linkedin",
+      "link": "https://www.linkedin.com/company/node-js",
+      "alt": "LinkedIn"
+    }
+  ],
+  "sideNavigation": {
+    "about": {
+      "label": "components.navigation.about.links.about",
+      "items": {
+        "about": {
+          "link": "/about",
+          "label": "components.navigation.about.links.aboutSide"
+        }
+      }
+    }
+  }
+}
