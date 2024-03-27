@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import type { FC, SVGProps } from 'react';
 
 import NavItem from '@/components/Containers/NavBar/NavItem';
@@ -14,7 +13,6 @@ const footerSocialIcons: Record<string, React.FC<SVGProps<SVGSVGElement>>> = {
 };
 
 const Footer: FC = () => {
-
   const openJSlink = siteNavigation.footerLinks.at(-1)!;
   return (
     <footer className={styles.footer}>
