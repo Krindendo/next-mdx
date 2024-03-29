@@ -9,7 +9,7 @@ import { PAGE_VIEWPORT, DYNAMIC_ROUTES } from '@/next.dynamic.constants.mjs';
 import { dynamicRouter } from '@/next.dynamic.mjs';
 import { MatterProvider } from '@/providers/matterProvider';
 
-type DynamicStaticPaths = { path: Array<string>; };
+type DynamicStaticPaths = { path: Array<string> };
 type DynamicParams = { params: DynamicStaticPaths };
 
 // This is the default Viewport Metadata
@@ -43,7 +43,7 @@ export const generateStaticParams = async () => {
   // If static exports are enabled we need to compute all available routes
   // And then append them to Next.js's Route Engine
   if (ENABLE_STATIC_EXPORT) {
-    const allAvailableRoutes = await mapRoutes()
+    const allAvailableRoutes = await mapRoutes();
 
     paths.push(...allAvailableRoutes.flat());
   }
@@ -56,7 +56,7 @@ export const generateStaticParams = async () => {
 // finally it returns (if the locale and route are valid) the React Component with the relevant context
 // and attached context providers for rendering the current page
 const getPage: FC<DynamicParams> = async ({ params }) => {
-  const { path = []} = params;
+  const { path = [] } = params;
 
   // Gets the current full pathname for a given path
   const pathname = dynamicRouter.getPathname(path);
@@ -67,7 +67,6 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
   // it means it does not have a Markdown file nor exists under the filesystem
   // but it is a valid route with an assigned layout that should be rendered
   if (staticGeneratedLayout !== undefined) {
-
     // Metadata and shared Context to be available through the lifecycle of the page
     const sharedContext = { pathname: `/${pathname}` };
 
@@ -88,9 +87,7 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
   // We retrieve the source of the Markdown file by doing an educated guess
   // of what possible files could be the source of the page, since the extension
   // context is lost from `getStaticProps` as a limitation of Next.js itself
-  const { source, filename } = await dynamicRouter.getMarkdownFile(
-    pathname
-  );
+  const { source, filename } = await dynamicRouter.getMarkdownFile(pathname);
 
   if (source.length && filename.length) {
     // This parses the source Markdown content and returns a React Component and

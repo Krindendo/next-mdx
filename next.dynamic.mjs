@@ -52,10 +52,6 @@ const getDynamicRouter = async () => {
 
   const websitePages = await getMarkdownFiles(process.cwd(), `pages`);
 
-  console.log('cachedMarkdownFiles', cachedMarkdownFiles);
-  console.log('pathnameToFilename', pathnameToFilename);
-  console.log('websitePages', websitePages);
-
   websitePages.forEach(filename => {
     // This Regular Expression is used to remove the `index.md(x)` suffix
     // of a name and to remove the `.md(x)` extensions of a filename.

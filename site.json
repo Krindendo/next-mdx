@@ -3,6 +3,12 @@
   "description": "Tamplete for using MDX with Next.",
   "favicon": "/static/images/favicons/favicon.png",
   "accentColor": "#333",
+  "twitter": {
+    "username": "",
+    "card": "summary",
+    "img": "/static/images/logo-hexagon-card.png",
+    "imgAlt": "The Nextjs mdx Logo"
+  },
   "websiteBanners": {
     "index": {
       "startDate": "2024-02-14T15:30:00.000Z",
