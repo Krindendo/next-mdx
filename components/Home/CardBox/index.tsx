@@ -1,8 +1,7 @@
+import { Card, CardTitle, CardDescription } from '@/components/Common/Card';
 import type { LanguageCard } from '../CardContent';
 
-import { Card, CardTitle, CardDescription } from '@/components/Common/Card';
-
-const CardBox = (language: Array<LanguageCard>) => {
+const CardBox = (language: LanguageCard[]) => {
   return (
     <>
       {language.map(language => (

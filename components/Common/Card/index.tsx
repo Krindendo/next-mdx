@@ -1,15 +1,13 @@
 'use client';
 
-import { Url } from 'next/dist/shared/lib/router/router';
+import type { MotionValue } from 'framer-motion';
+import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import type { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
-import {
-  motion,
-  MotionValue,
-  useMotionTemplate,
-  useMotionValue,
-} from 'framer-motion';
+import type { FC } from 'react';
 
-import { GridPattern, GridPatternProps } from '@/components/Icons/GridPattern';
+import GridPattern from '@/components/Icons/GridPattern';
+import type { GridPatternProps } from '@/components/Icons/GridPattern';
 
 export interface CardProps {
   children: React.ReactNode;
@@ -17,7 +15,7 @@ export interface CardProps {
   pattern: { y: number; squares: number[][] };
 }
 
-function Card({ children, href, pattern }: CardProps) {
+const Card: FC<CardProps> = ({ children, href, pattern }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -39,30 +37,30 @@ function Card({ children, href, pattern }: CardProps) {
       </div>
     </Link>
   );
-}
+};
 
 export interface CardTitleProps {
   children: React.ReactNode;
 }
 
-function CardTitle({ children }: CardTitleProps) {
+const CardTitle: FC<CardTitleProps> = ({ children }) => {
   return (
     <h3 className="mt-4 text-base font-bold text-zinc-900 dark:text-white">
       <span className="absolute inset-0 rounded-2xl" />
       {children}
     </h3>
   );
-}
+};
 
 export interface CardDescriptionProps {
   children: React.ReactNode;
 }
 
-function CardDescription({ children }: CardDescriptionProps) {
+const CardDescription: FC<CardDescriptionProps> = ({ children }) => {
   return (
     <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{children}</p>
   );
-}
+};
 
 interface CardPatternProps
   extends Omit<GridPatternProps, 'width' | 'height' | 'x'> {
@@ -70,9 +68,13 @@ interface CardPatternProps
   mouseY: MotionValue<number>;
 }
 
-function CardPattern({ mouseX, mouseY, ...gridProps }: CardPatternProps) {
-  let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`;
-  let style = { maskImage, WebkitMaskImage: maskImage };
+const CardPattern: FC<CardPatternProps> = ({
+  mouseX,
+  mouseY,
+  ...gridProps
+}) => {
+  const maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  const style = { maskImage, WebkitMaskImage: maskImage };
 
   return (
     <div className="pointer-events-none">
@@ -103,6 +105,6 @@ function CardPattern({ mouseX, mouseY, ...gridProps }: CardPatternProps) {
       </motion.div>
     </div>
   );
-}
+};
 
 export { Card, CardTitle, CardDescription };

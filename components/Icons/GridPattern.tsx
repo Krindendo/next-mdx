@@ -4,7 +4,7 @@ import { useId } from 'react';
 export interface GridPatternProps extends SVGProps<SVGSVGElement> {
   width: number;
   height: number;
-  squares: Array<Array<number>>;
+  squares: number[][];
 }
 
 const GridPattern: FC<GridPatternProps> = ({

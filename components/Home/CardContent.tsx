@@ -1,15 +1,15 @@
-interface LanguageCard {
+type LanguageCard = {
   href: string;
   title: string;
   description: string;
   icon: JSX.Element;
   pattern: {
     y: number;
-    squares: Array<Array<number>>;
+    squares: number[][];
   };
-}
+};
 
-const frontend: Array<LanguageCard> = [
+const frontend: LanguageCard[] = [
   {
     href: '/docs/js',
     title: 'JavaScript',
@@ -93,7 +93,7 @@ const frontend: Array<LanguageCard> = [
   },
 ];
 
-const backend: Array<LanguageCard> = [
+const backend: LanguageCard[] = [
   {
     href: '/docs/node',
     title: 'Node.js',
@@ -110,7 +110,7 @@ const backend: Array<LanguageCard> = [
   },
 ];
 
-const database: Array<LanguageCard> = [
+const database: LanguageCard[] = [
   {
     href: '/docs/mysql',
     title: 'MySql',

@@ -1,5 +1,6 @@
 'use strict';
 
+import { Card, CardTitle, CardDescription } from './components/Common/Card';
 import Link from './components/Link';
 import MDXCodeBox from './components/MDX/CodeBox';
 import MDXCodeTabs from './components/MDX/CodeTabs';
@@ -16,6 +17,15 @@ export const clientMdxComponents = {
   CodeTabs: MDXCodeTabs,
   // Renders a Button Component for `button` tags
   Button: Button,
+  //
+  Card: {
+    //
+    index: Card,
+    //
+    Title: CardTitle,
+    //
+    Description: CardDescription,
+  },
 };
 
 /**
