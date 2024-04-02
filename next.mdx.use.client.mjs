@@ -1,8 +1,14 @@
 'use strict';
 
 import { Card, CardTitle, CardDescription } from './components/Common/Card';
-import JavascriptLogo from './components/Icons/Languages/Javascript';
-import TypescriptLogo from './components/Icons/Languages/Typescript';
+import JavaScriptLogo from './components/Icons/Languages/JavaScript';
+import MySQLLogo from './components/Icons/Languages/MySQL';
+import NextjsLogo from './components/Icons/Languages/Nextjs';
+import NodejsLogo from './components/Icons/Languages/Nodejs';
+import PlanetScaleLogo from './components/Icons/Languages/PlanetScale';
+import ReactLogo from './components/Icons/Languages/React';
+import TypeScriptLogo from './components/Icons/Languages/TypeScript';
+import VueLogo from './components/Icons/Languages/Vue';
 import Link from './components/Link';
 import MDXCodeBox from './components/MDX/CodeBox';
 import MDXCodeTabs from './components/MDX/CodeTabs';
@@ -22,15 +28,21 @@ export const clientMdxComponents = {
   //
   Card: {
     //
-    index: Card,
+    Box: Card,
     //
     Title: CardTitle,
     //
     Description: CardDescription,
   },
   Icons: {
-    Javascript: JavascriptLogo,
-    TypeScript: TypescriptLogo,
+    JavaScript: JavaScriptLogo,
+    TypeScript: TypeScriptLogo,
+    MySQL: MySQLLogo,
+    Nextjs: NextjsLogo,
+    Nodejs: NodejsLogo,
+    PlanetScale: PlanetScaleLogo,
+    React: ReactLogo,
+    Vue: VueLogo,
   },
 };
 

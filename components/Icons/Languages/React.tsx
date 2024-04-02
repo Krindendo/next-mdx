@@ -1,6 +1,8 @@
+'use client';
+
 import type { FC, SVGProps } from 'react';
 
-const ReactLogoLogo: FC<SVGProps<SVGSVGElement>> = props => (
+const ReactLogo: FC<SVGProps<SVGSVGElement>> = props => (
   <svg
     className="h-12 w-12 fill-current"
     xmlns="http://www.w3.org/2000/svg"
@@ -27,4 +29,4 @@ const ReactLogoLogo: FC<SVGProps<SVGSVGElement>> = props => (
   </svg>
 );
 
-export default ReactLogoLogo;
+export default ReactLogo;

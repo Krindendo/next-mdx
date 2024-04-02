@@ -1,6 +1,6 @@
 import type { FC, SVGProps } from 'react';
 
-const TypescriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
+const TypeScriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
   <>
     <svg
       aria-hidden="true"
@@ -42,4 +42,4 @@ const TypescriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
   </>
 );
 
-export default TypescriptLogo;
+export default TypeScriptLogo;

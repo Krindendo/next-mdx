@@ -1,6 +1,8 @@
+'use client';
+
 import type { FC, SVGProps } from 'react';
 
-const JavascriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
+const JavaScriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
   <>
     <svg
       aria-hidden="true"
@@ -38,4 +40,4 @@ const JavascriptLogo: FC<SVGProps<SVGSVGElement>> = props => (
   </>
 );
 
-export default JavascriptLogo;
+export default JavaScriptLogo;
