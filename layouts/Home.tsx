@@ -1,10 +1,11 @@
 import type { FC, PropsWithChildren } from 'react';
 
+import SitePattern from '@/components/Containers/SitePattern/SitePattern';
 import CenteredLayout from '@/layouts/Centered';
 
 const HomeLayout: FC<PropsWithChildren> = ({ children }) => (
   <CenteredLayout>
-    <div className="glowingBackdrop" />
+    <SitePattern />
 
     <main className="">{children}</main>
   </CenteredLayout>

@@ -3,18 +3,18 @@
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
 import type { FC } from 'react';
 
+import SitePattern from '@/components/Containers/SitePattern/SitePattern';
 import Button from '@/components/ui/Button';
 import BaseLayout from '@/layouts/Base';
 import CenteredLayout from '@/layouts/Centered';
 
 const GlobalErrorPage: FC<{ error: Error }> = () => {
-
   return (
     <html>
       <body>
         <BaseLayout>
           <CenteredLayout>
-            <div className="glowingBackdrop" />
+            <SitePattern />
 
             <main>
               500

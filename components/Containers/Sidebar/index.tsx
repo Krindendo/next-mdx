@@ -7,7 +7,7 @@ import { useClientContext } from '@/hooks/react-server';
 import styles from './index.module.css';
 
 type SidebarProps = {
-  groups: Array<ComponentProps<typeof SidebarGroup>>;
+  groups: ComponentProps<typeof SidebarGroup>[];
 };
 
 const SideBar: FC<SidebarProps> = ({ groups }) => {
