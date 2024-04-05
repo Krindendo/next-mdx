@@ -4,17 +4,14 @@ import Hamburger from '@heroicons/react/24/solid/Bars3Icon';
 import XMark from '@heroicons/react/24/solid/XMarkIcon';
 import * as Label from '@radix-ui/react-label';
 import { useState } from 'react';
-import type { FC, ComponentProps, HTMLAttributeAnchorTarget } from 'react';
+import type { FC, HTMLAttributeAnchorTarget } from 'react';
 
-import LanguageDropdown from '@/components/Common/LanguageDropDown';
 import { SearchButton } from '@/components/Common/Search';
 import ThemeToggle from '@/components/Common/ThemeToggle';
 import NavItem from '@/components/Containers/NavBar/NavItem';
-import NodejsDark from '@/components/Icons/Logos/NodejsDark';
-import NodejsLight from '@/components/Icons/Logos/NodejsLight';
+import Earth from '@/components/Icons/Maps/Earth';
 import GitHub from '@/components/Icons/Social/GitHub';
 import Link from '@/components/Link';
-import type { FormattedMessage } from '@/types';
 
 import style from './index.module.css';
 
@@ -24,28 +21,24 @@ const navInteractionIcons = {
 };
 
 type NavbarProps = {
-  navItems: Array<{
-    text: FormattedMessage;
+  navItems: {
+    text: string;
     link: string;
     target?: HTMLAttributeAnchorTarget | undefined;
-  }>;
-  languages: ComponentProps<typeof LanguageDropdown>;
+  }[];
   onThemeTogglerClick: () => void;
 };
 
-const NavBar: FC<NavbarProps> = ({
-  navItems,
-  languages,
-  onThemeTogglerClick,
-}) => {
+const NavBar: FC<NavbarProps> = ({ navItems, onThemeTogglerClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className={`${style.container}`}>
       <div className={style.nodeIconAndMobileItemsToggler}>
         <Link className={style.nodeIconWrapper} href="/" aria-label="Home">
-          <NodejsDark className={style.nodejsLogoDark} />
-          <NodejsLight className={style.nodejsLogoLight} />
+          {/* <NodejsDark className={style.nodejsLogoDark} />
+          <NodejsLight className={style.nodejsLogoLight} /> */}
+          <Earth className={style.nodejsLogoDark} />
         </Link>
 
         <Label.Root
@@ -73,16 +66,10 @@ const NavBar: FC<NavbarProps> = ({
 
           <ThemeToggle onClick={onThemeTogglerClick} />
 
-          <LanguageDropdown
-            onChange={languages.onChange}
-            availableLanguages={languages.availableLanguages}
-            currentLanguage={languages.currentLanguage}
-          />
-
           <Link
             className={style.ghIconWrapper}
-            href="https://github.com/nodejs/node"
-            aria-label="Node.js Github"
+            href="https://github.com/krindendo"
+            aria-label="Krindendo Github"
           >
             <GitHub />
           </Link>
