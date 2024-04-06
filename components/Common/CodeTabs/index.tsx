@@ -1,9 +1,10 @@
-import { ArrowUpRightIcon } from '@heroicons/react/24/solid';
+import ArrowUpRightIcon from '@heroicons/react/24/solid/ArrowUpRightIcon';
 import Link from 'next/link';
 import type { ComponentProps, FC, PropsWithChildren } from 'react';
 
-import styles from './index.module.css';
 import Tabs from '@/components/Common/Tabs';
+
+import styles from './index.module.css';
 
 type CodeTabsProps = Pick<
   ComponentProps<typeof Tabs>,

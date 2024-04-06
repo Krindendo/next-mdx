@@ -2,13 +2,13 @@
 
 import type { FC, PropsWithChildren } from 'react';
 
-
-import styles from './layouts.module.css';
+import SitePattern from '@/components/Containers/SitePattern/SitePattern';
 
 const BaseLayout: FC<PropsWithChildren> = ({ children }) => (
-
-    <div className={styles.baseLayout}>{children}</div>
-
+  <div className="">
+    <SitePattern />
+    {children}
+  </div>
 );
 
 export default BaseLayout;

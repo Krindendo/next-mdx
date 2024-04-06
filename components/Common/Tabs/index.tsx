@@ -7,7 +7,7 @@ import styles from './index.module.css';
 type Tab = { key: string; label: string };
 
 type TabsProps = TabsPrimitive.TabsProps & {
-  tabs: Array<Tab>;
+  tabs: Tab[];
   addons?: ReactNode;
 };
 

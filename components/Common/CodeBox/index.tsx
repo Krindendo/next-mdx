@@ -1,6 +1,6 @@
 'use client';
 
-import { DocumentDuplicateIcon } from '@heroicons/react/24/outline';
+import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Fragment, isValidElement, useRef } from 'react';
 

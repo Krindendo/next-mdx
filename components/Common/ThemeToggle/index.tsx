@@ -1,23 +1,64 @@
-import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
+import {
+  MoonIcon,
+  SunIcon,
+  ComputerDesktopIcon,
+} from '@heroicons/react/16/solid';
+import {
+  MoonIcon as MoonIconBig,
+  SunIcon as SunIconBig,
+} from '@heroicons/react/24/outline';
+
+import { useTheme } from 'next-themes';
 import type { FC, MouseEvent } from 'react';
 
-import styles from './index.module.css';
+import Button from '@/components/ui/Button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/DropdownMenu';
 
 type ThemeToggleProps = {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-const ThemeToggle: FC<ThemeToggleProps> = ({ onClick = () => {} }) => {
+const ThemeToggle: FC<ThemeToggleProps> = () => {
+  const { setTheme } = useTheme();
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={styles.themeToggle}
-      aria-label="Toggle Dark Mode"
-    >
-      <MoonIcon className="block dark:hidden" height="20" />
-      <SunIcon className="hidden dark:block" height="20" />
-    </button>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="sm" className="h-6 w-6 px-0">
+          <SunIconBig className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIconBig className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem
+          className="text-muted-foreground hover:text-foreground"
+          onClick={() => setTheme('light')}
+        >
+          <SunIcon className="mr-2 h-4 w-4" />
+          <span>Light</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="text-muted-foreground hover:text-foreground"
+          onClick={() => setTheme('dark')}
+        >
+          <MoonIcon className="mr-2 h-4 w-4" />
+          <span>Dark</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="text-muted-foreground hover:text-foreground"
+          onClick={() => setTheme('system')}
+        >
+          <ComputerDesktopIcon className="mr-2 h-4 w-4" />
+          <span>System</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

@@ -1,4 +1,1 @@
-export type Layouts =
-  | 'home'
-  | 'page'
-  | 'search';
+export type Layouts = 'page' | 'search';

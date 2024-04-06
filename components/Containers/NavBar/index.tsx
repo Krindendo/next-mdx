@@ -26,18 +26,15 @@ type NavbarProps = {
     link: string;
     target?: HTMLAttributeAnchorTarget | undefined;
   }[];
-  onThemeTogglerClick: () => void;
 };
 
-const NavBar: FC<NavbarProps> = ({ navItems, onThemeTogglerClick }) => {
+const NavBar: FC<NavbarProps> = ({ navItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className={`${style.container}`}>
+    <nav className="bg-whitedark:border-neutral-900 border-neutral-200 dark:bg-neutral-950 md:flex md:h-16 md:flex-row md:items-center md:gap-8 md:border-b md:px-8">
       <div className={style.nodeIconAndMobileItemsToggler}>
         <Link className={style.nodeIconWrapper} href="/" aria-label="Home">
-          {/* <NodejsDark className={style.nodejsLogoDark} />
-          <NodejsLight className={style.nodejsLogoLight} /> */}
           <Earth className={style.nodejsLogoDark} />
         </Link>
 
@@ -64,7 +61,7 @@ const NavBar: FC<NavbarProps> = ({ navItems, onThemeTogglerClick }) => {
         <div className={style.actionsWrapper}>
           <SearchButton />
 
-          <ThemeToggle onClick={onThemeTogglerClick} />
+          <ThemeToggle />
 
           <Link
             className={style.ghIconWrapper}

@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
 import type { FC } from 'react';
 
 import SitePattern from '@/components/Containers/SitePattern/SitePattern';

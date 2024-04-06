@@ -1,19 +1,5 @@
-.container {
-    @apply border-neutral-200
-      bg-white
-      dark:border-neutral-900
-      dark:bg-neutral-950
-      md:flex
-      md:h-16
-      md:flex-row
-      md:items-center
-      md:gap-8
-      md:border-b
-      md:px-8;
-  }
-  
-  .nodeIconAndMobileItemsToggler {
-    @apply flex
+.nodeIconAndMobileItemsToggler {
+  @apply flex
       h-16
       shrink-0
       items-center
@@ -26,47 +12,47 @@
       md:items-center
       md:border-0
       md:px-0;
-  }
-  
-  .nodeIconWrapper {
-    @apply h-[30px]
+}
+
+.nodeIconWrapper {
+  @apply h-[30px]
       flex-1;
-  }
-  
-  .nodejsLogoDark {
-    @apply h-6
+}
+
+.nodejsLogoDark {
+  @apply h-6
       w-20
       dark:hidden;
-  }
-  
-  .nodejsLogoLight {
-    @apply hidden
+}
+
+.nodejsLogoLight {
+  @apply hidden
       h-6
       w-20
       dark:block;
-  }
-  
-  .navInteractionIcon {
-    @apply size-6;
-  }
-  
-  .sidebarItemTogglerLabel {
-    @apply block
+}
+
+.navInteractionIcon {
+  @apply size-6;
+}
+
+.sidebarItemTogglerLabel {
+  @apply block
       cursor-pointer
       md:hidden;
-  }
-  
-  .main {
-    @apply hidden
+}
+
+.main {
+  @apply hidden
       flex-1
       flex-col
       md:flex
       md:flex-row
       md:items-center;
-  }
-  
-  .navItems {
-    @apply flex
+}
+
+.navItems {
+  @apply flex
       flex-col
       gap-1
       border-b
@@ -77,10 +63,10 @@
       md:flex-row
       md:border-0
       md:p-0;
-  }
-  
-  .actionsWrapper {
-    @apply flex
+}
+
+.actionsWrapper {
+  @apply flex
       items-center
       gap-2
       border-b
@@ -89,20 +75,20 @@
       dark:border-neutral-900
       md:border-0
       md:p-0;
-  }
-  
-  .ghIconWrapper {
-    @apply size-9
+}
+
+.ghIconWrapper {
+  @apply size-9
       rounded-md
       p-2;
-  
-    svg {
-      @apply fill-neutral-700
+
+  svg {
+    @apply fill-neutral-700
         dark:fill-neutral-300;
-    }
-  
-    &:hover {
-      @apply bg-neutral-100
-        dark:bg-neutral-900;
-    }
   }
+
+  &:hover {
+    @apply bg-neutral-100
+        dark:bg-neutral-900;
+  }
+}

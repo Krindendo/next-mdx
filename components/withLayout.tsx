@@ -1,12 +1,10 @@
 import type { FC, PropsWithChildren } from 'react';
 
 import DefaultLayout from '@/layouts/Default';
-import HomeLayout from '@/layouts/Home';
 import SearchLayout from '@/layouts/Search';
 import type { Layouts } from '@/types';
 
 const layouts = {
-  home: HomeLayout,
   page: DefaultLayout,
   search: SearchLayout,
 } satisfies Record<Layouts, FC>;
