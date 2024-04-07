@@ -7,11 +7,11 @@ import WithSidebar from '@/components/withSidebar';
 const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
   <>
     <div className="flex min-h-screen flex-row ">
-      <div className="lg:w-72 xl:w-80">
+      <div className="scrollbar lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
         <WithSidebar navKeys={[]} />
       </div>
       <div className="flex w-full flex-col">
-        <header className="contents lg:fixed lg:inset-0 lg:z-40 lg:flex">
+        <header className="contents lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:z-40 lg:flex">
           <WithNavBar />
         </header>
 
@@ -26,10 +26,3 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
 );
 
 export default DefaultLayout;
-
-/* <header className="contents lg:pointer-events-none lg:fixed lg:inset-0 lg:z-40 lg:flex">
-        <div className="scrollbar contents lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
-          <WithNavBar />
-          <WithSidebar navKeys={[]} />
-        </div>
-      </header> */

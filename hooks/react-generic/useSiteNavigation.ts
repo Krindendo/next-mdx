@@ -1,28 +1,21 @@
 import type { HTMLAttributeAnchorTarget } from 'react';
 
 import { siteNavigation } from '@/next.json.mjs';
-import type {
-  FormattedMessage,
-  NavigationEntry,
-  NavigationKeys,
-} from '@/types';
+import type { NavigationEntry, NavigationKeys } from '@/types';
 
-type Context = Record<string, RichTranslationValues>;
+type Context = Record<string, string>;
 type Navigation = Record<string, NavigationEntry>;
 
 interface MappedNavigationEntry {
   items: [string, MappedNavigationEntry][];
-  label: FormattedMessage;
+  label: string;
   link: string;
   target?: HTMLAttributeAnchorTarget | undefined;
 }
 
 // Provides Context replacement for variables within the Link. This is also something that is not going
 // to happen in the future with `nodejs/nodejs.dev` codebase
-const replaceLinkWithContext = (
-  link: string,
-  context?: RichTranslationValues
-) =>
+const replaceLinkWithContext = (link: string, context?: string) =>
   Object.entries(context || {}).reduce(
     (finalLink, [find, replace]) =>
       finalLink.replace(
@@ -33,21 +26,16 @@ const replaceLinkWithContext = (
   );
 
 const useSiteNavigation = () => {
-  const t = useTranslations();
-
   const mapNavigationEntries = (entries: Navigation, context: Context = {}) => {
-    const getFormattedMessage = (label: string, key: string) =>
-      t.rich(label, context[key] || {});
-
     return Object.entries(entries).map(
-      ([key, { label, link, items, target }]): [
+      ([key, { label = '', link, items, target }]): [
         string,
         MappedNavigationEntry,
       ] => [
         key,
         {
           target,
-          label: label ? getFormattedMessage(label, key) : '',
+          label: label,
           link: link ? replaceLinkWithContext(link, context[key]) : '',
           items: items ? mapNavigationEntries(items, context) : [],
         },

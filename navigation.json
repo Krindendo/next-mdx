@@ -25,11 +25,11 @@
   ],
   "sideNavigation": {
     "about": {
-      "label": "components.navigation.about.links.about",
+      "label": "About",
       "items": {
         "about": {
           "link": "/about",
-          "label": "components.navigation.about.links.aboutSide"
+          "label": "aboutSide"
         }
       }
     }
