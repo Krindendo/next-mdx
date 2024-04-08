@@ -8,7 +8,7 @@ import {
   SunIcon as SunIconBig,
 } from '@heroicons/react/24/outline';
 import { useTheme } from 'next-themes';
-import type { FC, MouseEvent } from 'react';
+import type { FC } from 'react';
 
 import Button from '@/components/ui/Button';
 import {
@@ -17,18 +17,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/DropdownMenu';
+import { cn } from '@/util/cn';
 
 type ThemeToggleProps = {
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  className: string;
 };
 
-const ThemeToggle: FC<ThemeToggleProps> = () => {
+const ThemeToggle: FC<ThemeToggleProps> = ({ className }) => {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="h-6 w-6 px-0">
+        <Button
+          variant="ghost"
+          size="sm"
+          className={cn(className, 'h-8 w-8 px-0')}
+        >
           <SunIconBig className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <MoonIconBig className="absolute rotate-90 scale-0 transition-all dark:rotate-0" />
           <span className="sr-only">Toggle theme</span>
