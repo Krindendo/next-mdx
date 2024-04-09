@@ -11,7 +11,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
         <WithSidebar navKeys={[]} />
       </div>
       <div className="flex w-full flex-col">
-        <header className="contents lg:fixed lg:left-0 lg:right-0 lg:top-0 lg:z-40 lg:flex">
+        <header className="lg:sticky lg:top-0 lg:z-40 lg:flex">
           <WithNavBar />
         </header>
 

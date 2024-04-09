@@ -1,12 +1,6 @@
-import {
-  MoonIcon,
-  SunIcon,
-  ComputerDesktopIcon,
-} from '@heroicons/react/16/solid';
-import {
-  MoonIcon as MoonIconBig,
-  SunIcon as SunIconBig,
-} from '@heroicons/react/24/outline';
+'use client';
+
+import { Laptop, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import type { FC } from 'react';
 
@@ -17,25 +11,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/DropdownMenu';
-import { cn } from '@/util/cn';
 
-type ThemeToggleProps = {
-  className: string;
-};
-
-const ThemeToggle: FC<ThemeToggleProps> = ({ className }) => {
+const ModeToggle: FC = () => {
   const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className={cn(className, 'h-8 w-8 px-0')}
-        >
-          <SunIconBig className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <MoonIconBig className="absolute rotate-90 scale-0 transition-all dark:rotate-0" />
+        <Button variant="ghost" size="sm" className="h-8 w-8 px-0">
+          <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
@@ -44,21 +29,21 @@ const ThemeToggle: FC<ThemeToggleProps> = ({ className }) => {
           className="text-muted-foreground hover:text-foreground"
           onClick={() => setTheme('light')}
         >
-          <SunIcon className="mr-2 h-4 w-4" />
+          <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-muted-foreground hover:text-foreground"
           onClick={() => setTheme('dark')}
         >
-          <MoonIcon className="mr-2 h-4 w-4" />
+          <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-muted-foreground hover:text-foreground"
           onClick={() => setTheme('system')}
         >
-          <ComputerDesktopIcon className="mr-2 h-4 w-4" />
+          <Laptop className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -66,4 +51,4 @@ const ThemeToggle: FC<ThemeToggleProps> = ({ className }) => {
   );
 };
 
-export default ThemeToggle;
+export default ModeToggle;

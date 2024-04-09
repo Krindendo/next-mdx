@@ -1,6 +1,6 @@
 'use client';
 
-import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
+import { ArrowRight } from 'lucide-react';
 import type { FC } from 'react';
 
 import SitePattern from '@/components/Containers/SitePattern/SitePattern';
@@ -24,7 +24,7 @@ const GlobalErrorPage: FC<{ error: Error }> = () => {
               </p>
               <Button href="/">
                 Back to Home
-                <ArrowRightIcon />
+                <ArrowRight />
               </Button>
             </main>
           </CenteredLayout>

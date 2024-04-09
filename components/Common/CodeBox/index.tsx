@@ -1,6 +1,6 @@
 'use client';
 
-import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
+import { Files } from 'lucide-react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Fragment, isValidElement, useRef } from 'react';
 
@@ -99,7 +99,7 @@ const CodeBox: FC<PropsWithChildren<CodeBoxProps>> = ({
 
           {showCopyButton && (
             <Button kind="neutral" className={styles.action} onClick={onCopy}>
-              <DocumentDuplicateIcon className={styles.icon} />
+              <Files className={styles.icon} />
               Copy to clipboard
             </Button>
           )}

@@ -1,9 +1,9 @@
 'use client';
 
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import * as ScrollPrimitive from '@radix-ui/react-scroll-area';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import classNames from 'classnames';
+import { ChevronDown } from 'lucide-react';
 import { useId, useMemo } from 'react';
 import type { FC } from 'react';
 
@@ -83,7 +83,7 @@ const Select: FC<SelectProps> = ({
           id={id}
         >
           <SelectPrimitive.Value placeholder={placeholder} />
-          <ChevronDownIcon className={styles.icon} />
+          <ChevronDown className={styles.icon} />
         </SelectPrimitive.Trigger>
 
         <SelectPrimitive.Portal>

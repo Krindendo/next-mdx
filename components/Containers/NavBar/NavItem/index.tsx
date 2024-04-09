@@ -1,8 +1,8 @@
-import { ArrowUpRightIcon } from '@heroicons/react/24/solid';
-import classNames from 'classnames';
+import { ArrowUpRight } from 'lucide-react';
 import type { FC, PropsWithChildren } from 'react';
 
 import ActiveLink from '@/components/Common/ActiveLink';
+import { cn } from '@/util/cn';
 
 import styles from './index.module.css';
 
@@ -22,14 +22,14 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
 }) => (
   <ActiveLink
     href={href}
-    className={classNames(styles.navItem, styles[type], className)}
+    className={cn(styles.navItem, styles[type], className)}
     activeClassName={styles.active}
     allowSubPath={href.startsWith('/')}
   >
     <span className={styles.label}>{children}</span>
 
     {type === 'nav' && href.startsWith('http') && (
-      <ArrowUpRightIcon className={styles.icon} />
+      <ArrowUpRight className={styles.icon} />
     )}
   </ActiveLink>
 );

@@ -1,4 +1,4 @@
-import ArrowUpRightIcon from '@heroicons/react/24/solid/ArrowUpRightIcon';
+import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import type { ComponentProps, FC, PropsWithChildren } from 'react';
 
@@ -28,7 +28,7 @@ const CodeTabs: FC<PropsWithChildren<CodeTabsProps>> = ({
       linkText && (
         <Link className={styles.link} href={linkUrl}>
           {linkText}
-          <ArrowUpRightIcon className={styles.icon} />
+          <ArrowUpRight className={styles.icon} />
         </Link>
       )
     }

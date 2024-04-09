@@ -1,24 +1,16 @@
 import type { FC } from 'react';
 
 import NavBar from '@/components/Containers/NavBar';
+import { sideNavigation } from "navigation.json"
 
 const WithNavBar: FC = () => {
-  //const { navigationItems } = useNavigation();
-
   return (
     <div className="w-full">
-      <NavBar navItems={[]} />
+      <NavBar
+        navItems={sideNavigation}
+      />
     </div>
   );
 };
 
 export default WithNavBar;
-
-/*
-navigationItems.map(([, { label, link, target }]) => ({
-          link,
-          text: label,
-          target,
-        }))
-
-*/
