@@ -18,7 +18,7 @@ const WithSidebar: FC<WithSidebarProps> = ({ navKeys, context }) => {
       items: items.map(([, item]) => item),
     })
   );
-
+  console.log('mappedSidebarItems', mappedSidebarItems);
   return <Sidebar groups={mappedSidebarItems} />;
 };
 
