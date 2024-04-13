@@ -4,7 +4,7 @@ import type { LegacyFrontMatter } from './frontmatter';
 
 export interface ClientSharedServerContext {
   frontmatter: LegacyFrontMatter;
-  headings: Array<Heading>;
+  headings: Heading[];
   pathname: string;
   filename: string;
 }

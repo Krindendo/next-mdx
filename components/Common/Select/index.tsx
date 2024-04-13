@@ -9,17 +9,17 @@ import type { FC } from 'react';
 
 import styles from './index.module.css';
 
-type SelectValue = {
+interface SelectValue {
   label: string;
   value: string;
   iconImage?: React.ReactNode;
   disabled?: boolean;
-};
+}
 
-type SelectGroup = {
+interface SelectGroup {
   label?: string;
   items: SelectValue[];
-};
+}
 
 const isStringArray = (values: unknown[]): values is string[] =>
   Boolean(values[0] && typeof values[0] === 'string');
@@ -27,7 +27,7 @@ const isStringArray = (values: unknown[]): values is string[] =>
 const isValuesArray = (values: unknown[]): values is SelectValue[] =>
   Boolean(values[0] && typeof values[0] === 'object' && 'value' in values[0]);
 
-type SelectProps = {
+interface SelectProps {
   values: SelectGroup[] | SelectValue[] | string[];
   defaultValue?: string;
   placeholder?: string;
@@ -35,7 +35,7 @@ type SelectProps = {
   inline?: boolean;
   onChange?: (value: string) => void;
   className?: string;
-};
+}
 
 const Select: FC<SelectProps> = ({
   values = [],

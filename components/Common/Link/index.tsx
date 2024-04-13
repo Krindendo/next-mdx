@@ -1,10 +1,9 @@
 import LocalizedLink from 'next/link';
 import type { FC, ComponentProps } from 'react';
 
-
-type LinkProps = Omit<ComponentProps<typeof LocalizedLink>, 'href'> & {
+interface LinkProps extends Omit<ComponentProps<typeof LocalizedLink>, 'href'> {
   href?: string;
-};
+}
 
 const Link: FC<LinkProps> = ({ children, href, ...props }) => {
   if (!href || href.toString().startsWith('http')) {

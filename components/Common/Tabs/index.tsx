@@ -4,12 +4,15 @@ import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 import styles from './index.module.css';
 
-type Tab = { key: string; label: string };
+interface Tab {
+  key: string;
+  label: string;
+}
 
-type TabsProps = TabsPrimitive.TabsProps & {
+interface TabsProps extends TabsPrimitive.TabsProps {
   tabs: Tab[];
   addons?: ReactNode;
-};
+}
 
 const Tabs: FC<PropsWithChildren<TabsProps>> = ({
   tabs,

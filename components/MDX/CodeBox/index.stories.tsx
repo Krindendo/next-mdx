@@ -4,10 +4,12 @@ import { VFile } from 'vfile';
 import { MDXRenderer } from '@/components/mdxRenderer';
 import { compileMDX } from '@/next.mdx.compiler.mjs';
 
-type Props = { children: string };
+interface Props {
+  children: string;
+}
 
-type Story = StoryObj<Props>;
-type Meta = MetaObj<Props>;
+interface Story extends StoryObj<Props> {}
+interface Meta extends MetaObj<Props> {}
 
 export const Default: Story = {
   args: {

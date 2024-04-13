@@ -6,13 +6,11 @@ import Tabs from '@/components/Common/Tabs';
 
 import styles from './index.module.css';
 
-type CodeTabsProps = Pick<
-  ComponentProps<typeof Tabs>,
-  'tabs' | 'defaultValue'
-> & {
+interface CodeTabsProps
+  extends Pick<ComponentProps<typeof Tabs>, 'tabs' | 'defaultValue'> {
   linkUrl?: string;
   linkText?: string;
-};
+}
 
 const CodeTabs: FC<PropsWithChildren<CodeTabsProps>> = ({
   children,

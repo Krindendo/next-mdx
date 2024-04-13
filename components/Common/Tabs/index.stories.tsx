@@ -4,8 +4,8 @@ import type { ComponentProps } from 'react';
 
 import Tabs from '@/components/Common/Tabs';
 
-type Story = StoryObj<typeof Tabs>;
-type Meta = MetaObj<typeof Tabs>;
+interface Story extends StoryObj<typeof Tabs> {}
+interface Meta extends MetaObj<typeof Tabs> {}
 
 const defaultArgs: ComponentProps<typeof Tabs> = {
   defaultValue: 'prebuilt',

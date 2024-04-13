@@ -1,4 +1,4 @@
-type DebounceFunction<T = unknown> = (...args: Array<T>) => void;
+type DebounceFunction<T = unknown> = (...args: T[]) => void;
 
 let timeoutId: NodeJS.Timeout;
 

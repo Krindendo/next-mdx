@@ -22,7 +22,7 @@ export interface SiteConfig {
   darkAccentColor: string;
   og: OGConfig;
   twitter: TwitterConfig;
-  rssFeeds: Array<RSSFeed>;
+  rssFeeds: RSSFeed[];
   websiteBanners: Record<string, WebsiteBanner>;
   websiteBadges: Record<string, WebsiteBadge>;
 }

@@ -9,8 +9,12 @@ import { PAGE_VIEWPORT, DYNAMIC_ROUTES } from '@/next.dynamic.constants.mjs';
 import { dynamicRouter } from '@/next.dynamic.mjs';
 import { MatterProvider } from '@/providers/matterProvider';
 
-type DynamicStaticPaths = { path: Array<string> };
-type DynamicParams = { params: DynamicStaticPaths };
+interface DynamicStaticPaths {
+  path: string[];
+}
+interface DynamicParams {
+  params: DynamicStaticPaths;
+}
 
 // This is the default Viewport Metadata
 // @see https://nextjs.org/docs/app/api-reference/functions/generate-viewport#generateviewport-function
@@ -38,7 +42,7 @@ const mapRoutes = async () => {
 // This provides all the possible paths that can be generated statically
 // + provides all the paths that we support on the Node.js Website
 export const generateStaticParams = async () => {
-  const paths: Array<DynamicStaticPaths> = [];
+  const paths: DynamicStaticPaths[] = [];
 
   // If static exports are enabled we need to compute all available routes
   // And then append them to Next.js's Route Engine

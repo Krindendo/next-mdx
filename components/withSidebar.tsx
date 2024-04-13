@@ -4,10 +4,10 @@ import Sidebar from '@/components/Containers/Sidebar';
 import { useSiteNavigation } from '@/hooks/server';
 import type { NavigationKeys } from '@/types';
 
-type WithSidebarProps = {
+interface WithSidebarProps {
   navKeys: NavigationKeys[];
   context?: Record<string, string>;
-};
+}
 
 const WithSidebar: FC<WithSidebarProps> = ({ navKeys, context }) => {
   const { getSideNavigation } = useSiteNavigation();
