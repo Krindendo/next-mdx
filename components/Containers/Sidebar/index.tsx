@@ -6,9 +6,9 @@ import { useClientContext } from '@/hooks/react-server';
 
 import styles from './index.module.css';
 
-type SidebarProps = {
+interface SidebarProps {
   groups: ComponentProps<typeof SidebarGroup>[];
-};
+}
 
 const SideBar: FC<SidebarProps> = ({ groups }) => {
   const { pathname } = useClientContext();
@@ -45,3 +45,75 @@ const SideBar: FC<SidebarProps> = ({ groups }) => {
 };
 
 export default SideBar;
+
+interface SiteSidebarProps {
+  className?: string;
+}
+
+export function SiteSidebar({ className, ...props }: SiteSidebarProps) {
+  const segment = useSelectedLayoutSegment();
+  const [toggleDocs, setToggleDocs] = React.useState(false);
+  const pathname = usePathname();
+
+  const handleToggleDocs = () => {
+    setToggleDocs(prev => !prev);
+  };
+
+  React.useEffect(() => {
+    if (pathname.includes('algorithms')) {
+      setToggleDocs(true);
+    }
+    if (pathname.includes('docs')) {
+      setToggleDocs(false);
+    }
+  }, [pathname]);
+
+  return (
+    <nav className={cn('mb-5', className)} {...props}>
+      <SiteSidebarToggle
+        toggleDocs={toggleDocs}
+        handleToggleDocs={handleToggleDocs}
+      />
+      <ul role="list">
+        {docsConfig.mainNav?.map((item, index) => (
+          <li key={index} className="md:hidden">
+            <Link
+              key={index}
+              href={item.disabled ? '#' : item.href}
+              className={cn(
+                'text-sm leading-5 transition hover:text-foreground/80',
+                item.href.startsWith(`/${segment}`)
+                  ? 'text-foreground'
+                  : 'text-foreground/60',
+                item.disabled && 'cursor-not-allowed opacity-80'
+              )}
+            >
+              {item.title}
+            </Link>
+          </li>
+        ))}
+        {toggleDocs ? (
+          <>
+            {docsConfig.sidebarNavAlgorithms.map((group, groupIndex) => (
+              <NavigationGroup
+                key={group.title}
+                group={group}
+                className={groupIndex === 0 ? 'md:mt-0' : undefined}
+              />
+            ))}
+          </>
+        ) : (
+          <>
+            {docsConfig.sidebarNavDocs.map((group, groupIndex) => (
+              <NavigationGroup
+                key={group.title}
+                group={group}
+                className={groupIndex === 0 ? 'md:mt-0' : undefined}
+              />
+            ))}
+          </>
+        )}
+      </ul>
+    </nav>
+  );
+}

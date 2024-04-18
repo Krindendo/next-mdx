@@ -2,66 +2,102 @@
 
 // import { Menu, X as XMark } from 'lucide-react';
 // import { useState } from 'react';
-import type { FC, HTMLAttributeAnchorTarget } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
+import { useSelectedLayoutSegment } from 'next/navigation';
+import { forwardRef, type HTMLAttributeAnchorTarget } from 'react';
 
 import { SearchButton } from '@/components/Common/Search';
 import ThemeToggle from '@/components/Common/ThemeToggle';
-import NavItem from '@/components/Containers/NavBar/NavItem';
 import GitHub from '@/components/Icons/Social/GitHub';
-import Button from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
+import { cn } from '@/util/cn';
 
 // const navInteractionIcons = {
 //   show: <Menu />,
 //   close: <XMark />,
 // };
 
-type NavbarProps = {
+interface NavbarProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   navItems: {
     label: string;
     link: string;
     target?: HTMLAttributeAnchorTarget | undefined;
   }[];
-};
+}
 
-const NavBar: FC<NavbarProps> = ({ navItems }) => {
-  //const [isMenuOpen, setIsMenuOpen] = useState(false);
+const NavBar = forwardRef<HTMLDivElement, NavbarProps>(
+  ({ navItems, className, ...props }, ref) => {
+    //const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <nav className="bg-whitedark:border-neutral-900 border-neutral-200 dark:bg-neutral-950 md:flex md:h-16 md:flex-row md:items-center md:gap-8 md:border-b md:px-8">
-      <input className="peer hidden" id="sidebarItemToggler" type="checkbox" />
+    const segment = useSelectedLayoutSegment();
+    //const { isOpen: mobileNavIsOpen } = useMobileNavigationStore();
 
-      <div className="hidden flex-1 flex-col peer-checked:flex md:flex md:flex-row md:items-center">
-        <div className="lg:block lg:max-w-sm lg:flex-auto">
-          <SearchButton />
-        </div>
-        <div className="ml-auto flex items-center gap-5">
-          <div className="flex flex-col gap-1 border-b border-neutral-200 p-4 dark:border-neutral-900 md:flex-1 md:flex-row md:border-0 md:p-0">
-            {navItems.map(({ label, link, target }) => (
-              <NavItem key={link} href={link} target={target}>
-                {label}
-              </NavItem>
-            ))}
+    const { scrollY } = useScroll();
+    const bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9]);
+    const bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8]);
+
+    return (
+      <motion.nav
+        ref={ref}
+        className={cn(
+          className,
+          'border-zinc/10 z-50 flex h-14 items-center justify-between gap-12 border-b bg-white px-4 backdrop-blur-sm transition dark:border-white/10 dark:bg-zinc-900 dark:backdrop-blur sm:px-6 lg:left-72 lg:z-30 lg:px-8 xl:left-80'
+        )}
+        style={
+          {
+            '--bg-opacity-light': bgOpacityLight,
+            '--bg-opacity-dark': bgOpacityDark,
+          } as React.CSSProperties
+        }
+      >
+        <div className="hidden flex-1 flex-col peer-checked:flex md:flex md:flex-row md:items-center">
+          <div className="lg:block lg:max-w-sm lg:flex-auto">
+            <SearchButton />
           </div>
+          <div className="ml-auto flex items-center gap-5">
+            <ul role="list" className="flex items-center gap-8">
+              {navItems.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    key={index}
+                    href={item.disabled ? '#' : item.link}
+                    className={cn(
+                      'text-sm leading-5 transition hover:text-foreground/80',
+                      item.link.startsWith(`/${segment}`)
+                        ? 'text-foreground'
+                        : 'text-foreground/60',
+                      item.disabled && 'cursor-not-allowed opacity-80'
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-          <div className="hidden h-5 w-px bg-zinc-900/10 dark:bg-white/10 md:block" />
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
+            <div className="hidden h-5 w-px bg-zinc-900/10 dark:bg-white/10 md:block" />
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
 
-            <Button variant="ghost" className="w-9 px-0" asChild>
-              <a
-                href="https://github.com/Krindendo"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GitHub className="h-6 w-6" />
-              </a>
-            </Button>
+              <Button variant="ghost" className="w-9 px-0" asChild>
+                <a
+                  href="https://github.com/Krindendo"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GitHub className="h-6 w-6" />
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  );
-};
+      </motion.nav>
+    );
+  }
+);
+
+NavBar.displayName = 'SiteHeader';
 
 export default NavBar;
 

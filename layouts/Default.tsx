@@ -2,14 +2,14 @@ import type { FC, PropsWithChildren } from 'react';
 
 import WithFooter from '@/components/withFooter';
 import WithNavBar from '@/components/withNavBar';
-import WithSidebar from '@/components/withSidebar';
+//import WithSidebar from '@/components/withSidebar';
 
 const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
   <>
     <div className="flex min-h-screen flex-row ">
-      <div className="scrollbar lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
+      {/* <div className="scrollbar lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
         <WithSidebar navKeys={['about']} />
-      </div>
+      </div> */}
       <div className="flex w-full flex-col">
         <header className="lg:sticky lg:top-0 lg:z-40 lg:flex">
           <WithNavBar />
