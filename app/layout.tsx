@@ -11,8 +11,16 @@ import '@/styles/index.css';
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
   return (
-    <html lang="en" className={cn(CAL_SANS.variable, OPEN_SANS.variable)}>
-      <body suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cn(
+        'bg-background font-sans antialiased',
+        CAL_SANS.variable,
+        OPEN_SANS.variable
+      )}
+      suppressHydrationWarning
+    >
+      <body>
         <ThemeProvider>
           <BaseLayout>{children}</BaseLayout>
         </ThemeProvider>
