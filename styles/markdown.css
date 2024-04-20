@@ -1,8 +1,7 @@
 main {
   @apply flex
       w-full
-      flex-col
-      gap-6;
+      flex-col;
 
   hr {
     @apply w-full
@@ -102,9 +101,7 @@ main {
 
     th,
     td {
-      @apply xs:block
-          xs:border-l-0
-          border
+      @apply border
           border-r-0
           border-t-0
           border-neutral-200
@@ -112,7 +109,9 @@ main {
           py-2
           text-neutral-900
           dark:border-neutral-800
-          dark:text-white;
+          dark:text-white
+          xs:block
+          xs:border-l-0;
 
       > a {
         @apply pr-2;

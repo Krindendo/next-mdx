@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
 
-import NavLink from '../NavLink';
+import NavLink from '@/components/Containers/Sidebar/NavLink';
 import { cn } from '@/util/cn';
 
 const SIDEBAR_DEEP_LEVEL = 2;
@@ -64,3 +64,5 @@ const Tree = forwardRef<HTMLUListElement, TreeProps>(
 );
 
 Tree.displayName = 'Tree';
+
+export default Tree;
