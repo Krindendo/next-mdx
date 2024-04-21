@@ -1,6 +1,6 @@
 {
   "topNavigation": {
-    "about": {
+    "docs": {
       "link": "/docs",
       "label": "Documentation"
     }
@@ -24,12 +24,16 @@
     }
   ],
   "sideNavigation": {
-    "about": {
-      "label": "About",
+    "docs": {
+      "label": "Docs",
       "items": {
-        "about": {
-          "link": "/about",
-          "label": "aboutSide"
+        "context-hooks": {
+          "link": "/docs/context-hooks",
+          "label": "Context hooks"
+        },
+        "state-hooks": {
+          "link": "/docs/state-hooks",
+          "label": "State hooks"
         }
       }
     }

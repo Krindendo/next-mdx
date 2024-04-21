@@ -11,14 +11,7 @@ export interface SocialConfig {
   alt?: string;
 }
 
-export type NavigationKeys =
-  | 'about'
-  | 'download'
-  | 'docs'
-  | 'getInvolved'
-  | 'certification'
-  | 'learn'
-  | 'blog';
+export type NavigationKeys = 'docs' | 'getInvolved';
 
 export interface NavigationEntry {
   label?: string;

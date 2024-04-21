@@ -9,13 +9,5 @@
     "img": "/static/images/logo-hexagon-card.png",
     "imgAlt": "The Nextjs mdx Logo"
   },
-  "websiteBanners": {
-    "index": {
-      "startDate": "2024-02-14T15:30:00.000Z",
-      "endDate": "2024-02-21T17:30:00.000Z",
-      "text": "New security releases available",
-      "link": "https://nodejs.org/en/blog/vulnerability/february-2024-security-releases/"
-    }
-  },
   "websiteBadges": {}
 }

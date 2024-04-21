@@ -13,7 +13,7 @@ import Link from './components/Link';
 import MDXCodeBox from './components/MDX/CodeBox';
 import MDXCodeTabs from './components/MDX/CodeTabs';
 import MDXImage from './components/MDX/Image';
-import Button from './components/ui/Button';
+import { Button } from './components/ui/Button';
 
 /**
  * A full list of React Components that we want to pass through to MDX

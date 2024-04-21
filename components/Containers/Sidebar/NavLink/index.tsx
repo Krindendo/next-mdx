@@ -16,13 +16,13 @@ const NavLink: FC<NavLinkProps> = ({
   isAnchorLink = false,
   children,
 }) => {
-  const { close } = useMobileNavigationStore();
-  const isInsideMobileNavigation = useIsInsideMobileNavigation();
+  //const { close } = useMobileNavigationStore();
+  //const isInsideMobileNavigation = useIsInsideMobileNavigation();
 
   function handleChangeRoute() {
-    if (isInsideMobileNavigation) {
-      close();
-    }
+    // if (isInsideMobileNavigation) {
+    //   //close();
+    // }
   }
 
   return (

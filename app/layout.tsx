@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { FC, PropsWithChildren } from 'react';
 
+import { SectionProvider } from '@/components/Containers/Sidebar/Provider';
 import BaseLayout from '@/layouts/Base';
 import { VERCEL_ENV } from '@/next.constants.mjs';
 import { CAL_SANS, OPEN_SANS } from '@/next.fonts';
@@ -21,9 +22,11 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider>
-          <BaseLayout>{children}</BaseLayout>
-        </ThemeProvider>
+        <SectionProvider>
+          <ThemeProvider>
+            <BaseLayout>{children}</BaseLayout>
+          </ThemeProvider>
+        </SectionProvider>
 
         {VERCEL_ENV && (
           <>

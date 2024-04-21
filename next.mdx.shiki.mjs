@@ -1,19 +1,14 @@
-"use strict";
+'use strict';
 
-import classNames from "classnames";
-import { toString } from "hast-util-to-string";
-import { SKIP, visit } from "unist-util-visit";
+import classNames from 'classnames';
+import { toString } from 'hast-util-to-string';
+import { SKIP, visit } from 'unist-util-visit';
 
-import { getShiki, highlightToHast } from "./util/getHighlighter";
+import { getShiki, highlightToHast } from './util/getHighlighter';
 
 // This is what Remark will use as prefix within a <pre> className
 // to attribute the current language of the <pre> element
-const languagePrefix = "language-";
-
-// We do a top-level await, since the Unist-tree visitor
-// is synchronous, and it makes more sense to do a top-level
-// await, rather than an await inside the visitor function
-const memoizedShiki = await getShiki();
+const languagePrefix = 'language-';
 
 /**
  * Retrieve the value for the given meta key.
@@ -27,7 +22,7 @@ const memoizedShiki = await getShiki();
  * @return {string | undefined} - The value related to the given key.
  */
 function getMetaParameter(meta, key) {
-  if (typeof meta !== "string") {
+  if (typeof meta !== 'string') {
     return;
   }
 
@@ -54,18 +49,23 @@ function getMetaParameter(meta, key) {
  */
 function isCodeBlock(node) {
   return Boolean(
-    node?.tagName === "pre" && node?.children[0].tagName === "code"
+    node?.tagName === 'pre' && node?.children[0].tagName === 'code'
   );
 }
 
 export default function rehypeShikiji() {
   return async function (tree) {
-    visit(tree, "element", (_, index, parent) => {
+    // We do a top-level await, since the Unist-tree visitor
+    // is synchronous, and it makes more sense to do a top-level
+    // await, rather than an await inside the visitor function
+    const memoizedShiki = await getShiki();
+
+    visit(tree, 'element', (_, index, parent) => {
       const languages = [];
       const displayNames = [];
       const codeTabsChildren = [];
 
-      let defaultTab = "0";
+      let defaultTab = '0';
       let currentIndex = index;
 
       while (isCodeBlock(parent?.children[currentIndex])) {
@@ -73,19 +73,19 @@ export default function rehypeShikiji() {
 
         const displayName = getMetaParameter(
           codeElement.data?.meta,
-          "displayName"
+          'displayName'
         );
 
         // We should get the language name from the class name
         if (codeElement.properties.className?.length) {
-          const className = codeElement.properties.className.join(" ");
+          const className = codeElement.properties.className.join(' ');
           const matches = className.match(/language-(?<language>.*)/);
 
-          languages.push(matches?.groups.language ?? "text");
+          languages.push(matches?.groups.language ?? 'text');
         }
 
         // Map the display names of each variant for the CodeTab
-        displayNames.push(displayName?.replaceAll("|", "") ?? "");
+        displayNames.push(displayName?.replaceAll('|', '') ?? '');
 
         codeTabsChildren.push(parent?.children[currentIndex]);
 
@@ -93,10 +93,10 @@ export default function rehypeShikiji() {
         // then the default selected entry of the CodeTabs will be the desired entry
         const specificActive = getMetaParameter(
           codeElement.data?.meta,
-          "active"
+          'active'
         );
 
-        if (specificActive === "true") {
+        if (specificActive === 'true') {
           defaultTab = String(codeTabsChildren.length - 1);
         }
 
@@ -104,17 +104,17 @@ export default function rehypeShikiji() {
 
         // If the CodeBoxes are on the root tree the next Element will be
         // an empty text element so we should skip it
-        currentIndex += nextNode && nextNode?.type === "text" ? 2 : 1;
+        currentIndex += nextNode && nextNode?.type === 'text' ? 2 : 1;
       }
 
       if (codeTabsChildren.length >= 2) {
         const codeTabElement = {
-          type: "element",
-          tagName: "CodeTabs",
+          type: 'element',
+          tagName: 'CodeTabs',
           children: codeTabsChildren,
           properties: {
-            languages: languages.join("|"),
-            displayNames: displayNames.join("|"),
+            languages: languages.join('|'),
+            displayNames: displayNames.join('|'),
             defaultTab,
           },
         };
@@ -129,9 +129,9 @@ export default function rehypeShikiji() {
       }
     });
 
-    visit(tree, "element", (node, index, parent) => {
+    visit(tree, 'element', (node, index, parent) => {
       // We only want to process <pre>...</pre> elements
-      if (!parent || index == null || node.tagName !== "pre") {
+      if (!parent || index == null || node.tagName !== 'pre') {
         return;
       }
 
@@ -145,7 +145,7 @@ export default function rehypeShikiji() {
 
       // Ensure that we're not visiting a <code> element but it's inner contents
       // (keep iterating further down until we reach where we want)
-      if (preElement.type !== "element" || preElement.tagName !== "code") {
+      if (preElement.type !== 'element' || preElement.tagName !== 'code') {
         return;
       }
 
@@ -153,17 +153,17 @@ export default function rehypeShikiji() {
       const preClassNames = preElement.properties.className;
 
       // The current classnames should be an array and it should have a length
-      if (typeof preClassNames !== "object" || preClassNames.length === 0) {
+      if (typeof preClassNames !== 'object' || preClassNames.length === 0) {
         return;
       }
 
       // We want to retrieve the language class name from the class names
       const codeLanguage = preClassNames.find(
-        (c) => typeof c === "string" && c.startsWith(languagePrefix)
+        c => typeof c === 'string' && c.startsWith(languagePrefix)
       );
 
       // If we didn't find any `language-` classname then we shouldn't highlight
-      if (typeof codeLanguage !== "string") {
+      if (typeof codeLanguage !== 'string') {
         return;
       }
 
@@ -187,12 +187,12 @@ export default function rehypeShikiji() {
 
       const showCopyButton = getMetaParameter(
         preElement.data?.meta,
-        "showCopyButton"
+        'showCopyButton'
       );
 
       // Adds a Copy Button to the CodeBox if requested as an additional parameter
       // And avoids setting the property (overriding) if undefined or invalid value
-      if (showCopyButton && ["true", "false"].includes(showCopyButton)) {
+      if (showCopyButton && ['true', 'false'].includes(showCopyButton)) {
         children[0].properties.showCopyButton = showCopyButton;
       }
 

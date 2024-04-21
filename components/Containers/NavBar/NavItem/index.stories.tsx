@@ -28,7 +28,7 @@ export const WithChildren: Story = {
 
 export const FooterItem: Story = {
   args: {
-    href: '/about',
+    href: '/docs',
     children: 'Trademark Policy',
     type: 'footer',
   },

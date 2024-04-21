@@ -23,6 +23,5 @@ export interface SiteConfig {
   og: OGConfig;
   twitter: TwitterConfig;
   rssFeeds: RSSFeed[];
-  websiteBanners: Record<string, WebsiteBanner>;
   websiteBadges: Record<string, WebsiteBadge>;
 }

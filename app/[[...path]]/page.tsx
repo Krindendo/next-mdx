@@ -33,7 +33,6 @@ export const generateMetadata = async ({ params }: DynamicParams) => {
 // Gets all mapped routes to the Next.js Routing Engine
 const mapRoutes = async () => {
   const routesForLanguage = await dynamicRouter.getRoutes();
-
   return routesForLanguage.map(pathname =>
     dynamicRouter.mapPathToRoute(pathname)
   );
@@ -48,7 +47,6 @@ export const generateStaticParams = async () => {
   // And then append them to Next.js's Route Engine
   if (ENABLE_STATIC_EXPORT) {
     const allAvailableRoutes = await mapRoutes();
-
     paths.push(...allAvailableRoutes.flat());
   }
 
@@ -96,7 +94,7 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
   if (source.length && filename.length) {
     // This parses the source Markdown content and returns a React Component and
     // relevant context from the Markdown File
-    const { MDXContent, frontmatter, headings, readingTime } =
+    const { MDXContent, frontmatter, headings } =
       await dynamicRouter.getMDXContent(source, filename);
 
     // Metadata and shared Context to be available through the lifecycle of the page
@@ -104,13 +102,13 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
       frontmatter,
       headings,
       pathname: `/${pathname}`,
-      readingTime,
       filename,
     };
 
     // Defines a shared Server Context for the Client-Side
     // That is shared for all pages under the dynamic router
     setClientContext(sharedContext);
+    console.log('sharedContext', sharedContext);
 
     // The Matter Provider allows Client-Side injection of the data
     // to a shared React Client Provider even though the page is rendered
