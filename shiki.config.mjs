@@ -4,11 +4,13 @@ import diffLanguage from 'shiki/langs/diff.mjs';
 import dockerLanguage from 'shiki/langs/docker.mjs';
 import javaScriptLanguage from 'shiki/langs/javascript.mjs';
 import jsonLanguage from 'shiki/langs/json.mjs';
+import JSXLanguage from 'shiki/langs/jsx.mjs';
 import powershellLanguage from 'shiki/langs/powershell.mjs';
 import shellScriptLanguage from 'shiki/langs/shellscript.mjs';
 import shellSessionLanguage from 'shiki/langs/shellsession.mjs';
+import TSXLanguage from 'shiki/langs/tsx.mjs';
 import typeScriptLanguage from 'shiki/langs/typescript.mjs';
-import shikiNordTheme from 'shiki/themes/nord.mjs';
+import shikiDarkPlusTheme from 'shiki/themes/dark-plus.mjs';
 
 /** @type {Array<import('shiki').LanguageRegistration>} */
 export const LANGUAGES = [
@@ -58,13 +60,19 @@ export const LANGUAGES = [
     scopeName: 'source.diff',
     displayName: 'Diff',
   },
+  {
+    ...JSXLanguage[0],
+    scopeName: 'source.jsx',
+    displayName: 'JSX',
+  },
+  {
+    ...TSXLanguage[0],
+    scopeName: 'source.tsx',
+    displayName: 'TSX',
+  },
 ];
 
 // This is the default theme we use for our Shiki Syntax Highlighter
 export const DEFAULT_THEME = {
-  // We updating this color because the background color and comment text color
-  // in the Codebox component do not comply with accessibility standards
-  // @see https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html
-  colorReplacements: { '#616e88': '#707e99' },
-  ...shikiNordTheme,
+  ...shikiDarkPlusTheme,
 };
