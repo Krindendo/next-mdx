@@ -1,6 +1,8 @@
 'use strict';
 
+import Callout from './components/Common/Callout';
 import { Card, CardTitle, CardDescription } from './components/Common/Card';
+import MdxCard from './components/Common/MdxCard';
 import ReactLogo from './components/Icons/Languages/React';
 import Link from './components/Link';
 import MDXCodeBox from './components/MDX/CodeBox';
@@ -17,7 +19,7 @@ export const clientMdxComponents = {
   // Renders MDX CodeTabs
   CodeTabs: MDXCodeTabs,
   // Renders a Button Component for `button` tags
-  Button: Button,
+  Button,
   //
   Card: {
     //
@@ -27,9 +29,11 @@ export const clientMdxComponents = {
     //
     Description: CardDescription,
   },
+  MdxCard,
   Icons: {
     React: ReactLogo,
   },
+  Callout,
 };
 
 /**
