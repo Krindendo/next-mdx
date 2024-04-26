@@ -5,13 +5,14 @@ import { usePathname } from 'next/navigation';
 import type { ComponentProps, FC } from 'react';
 import { useStore } from 'zustand';
 
-import SidebarItem from '@/components/Containers/Sidebar/SidebarItem';
 import ActivePageMarker from '@/components/Containers/Sidebar/ActivePageMarker';
 import NavLink from '@/components/Containers/Sidebar/NavLink';
 import { useSectionStore } from '@/components/Containers/Sidebar/Provider';
 import Tree from '@/components/Containers/Sidebar/Tree';
 import VisibleSectionHighlight from '@/components/Containers/Sidebar/VisibleSectionHighlight';
 import { cn } from '@/util/cn';
+
+import type SidebarItem from '@/components/Containers/Sidebar/SidebarItem';
 
 type SidebarGroupProps = {
   groupName: string;
@@ -55,9 +56,9 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
         </AnimatePresence>
         <ul role="list" className="border-l border-transparent">
           {items?.map(item => (
-            <motion.li key={item.href} layout="position" className="relative">
-              <NavLink href={item.href || '#'} active={item.href === pathname}>
-                {item.title}
+            <motion.li key={item.link} layout="position" className="relative">
+              <NavLink href={item.link || '#'} active={item.link === pathname}>
+                {item.label}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
                 {item.href === pathname && sections.items?.length ? (
