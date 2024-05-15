@@ -2,7 +2,7 @@
 
 import classNames from 'classnames';
 import { toString } from 'hast-util-to-string';
-import { SKIP, visit } from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 
 import { getShiki, highlightToHast } from './util/getHighlighter';
 
@@ -32,25 +32,6 @@ function getMetaParameter(meta, key) {
   return parameter !== undefined && parameter.length > 0
     ? parameter
     : undefined;
-}
-
-/**
- * @typedef {import('unist').Node} Node
- * @property {string} tagName
- * @property {Array<import('unist').Node>} children
- */
-
-/**
- * Checks if the given node is a valid code element.
- *
- * @param {import('unist').Node} node - The node to be verified.
- *
- * @return {boolean} - True when it is a valid code element, false otherwise.
- */
-function isCodeBlock(node) {
-  return Boolean(
-    node?.tagName === 'pre' && node?.children[0].tagName === 'code'
-  );
 }
 
 export default function rehypeShikiji() {
