@@ -27,6 +27,10 @@
     "docs": {
       "label": "Docs",
       "items": {
+        "Introduction": {
+          "link": "/docs",
+          "label": "Introduction"
+        },
         "context-hooks": {
           "link": "/docs/context-hooks",
           "label": "Context hooks"
