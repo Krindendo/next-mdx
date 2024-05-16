@@ -4,7 +4,7 @@ import { Files } from 'lucide-react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Fragment, isValidElement, useRef } from 'react';
 
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { useCopyToClipboard } from '@/hooks';
 
 import styles from './index.module.css';
@@ -98,7 +98,11 @@ const CodeBox: FC<PropsWithChildren<CodeBoxProps>> = ({
           <span className={styles.language}>{language}</span>
 
           {showCopyButton && (
-            <Button kind="neutral" className={styles.action} onClick={onCopy}>
+            <Button
+              variant="secondary"
+              className={styles.action}
+              onClick={onCopy}
+            >
               <Files className={styles.icon} />
               Copy to clipboard
             </Button>

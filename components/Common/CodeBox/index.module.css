@@ -1,20 +1,21 @@
 .root {
   @apply w-full
-      rounded
+      rounded-lg
       border
-      border-neutral-900
-      bg-neutral-950;
+      border-neutral-800
+      bg-neutral-900;
 
   .content {
     @apply m-0
         p-4;
 
     & > code {
+
       @apply grid
           overflow-x-auto
           bg-transparent
           p-0
-          font-heading
+          font-mono
           text-sm
           font-normal
           leading-snug
@@ -28,7 +29,7 @@
 
         &:not(:empty:last-child)::before {
           @apply inline-block
-              content-[''];
+              content-[''] ;
         }
 
         &:not(:empty:last-child)::after {
@@ -38,8 +39,8 @@
               mr-4
               w-4.5
               text-right
-              font-heading
-              text-neutral-600
+              font-mono
+              text-neutral-400
               [content:counter(line)]
               [counter-increment:line];
         }

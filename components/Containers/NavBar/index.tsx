@@ -10,7 +10,7 @@ import { forwardRef, type HTMLAttributeAnchorTarget } from 'react';
 import { SearchButton } from '@/components/Common/Search';
 import ThemeToggle from '@/components/Common/ThemeToggle';
 import GitHub from '@/components/Icons/Social/GitHub';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/util/cn';
 
 // const navInteractionIcons = {

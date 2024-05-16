@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import type { FC } from 'react';
 
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import CenteredLayout from '@/layouts/Centered';
 
 const NotFoundPage: FC = () => {
