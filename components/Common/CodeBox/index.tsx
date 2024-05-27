@@ -4,7 +4,7 @@ import { Files } from 'lucide-react';
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Fragment, isValidElement, useRef } from 'react';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { useCopyToClipboard } from '@/hooks';
 
 import styles from './index.module.css';

@@ -1,1 +1,1 @@
-export type Layouts = 'page' | 'search';
+export type Layouts = 'page' | 'search' | 'docs';
