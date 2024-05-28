@@ -108,7 +108,6 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
     // Defines a shared Server Context for the Client-Side
     // That is shared for all pages under the dynamic router
     setClientContext(sharedContext);
-    console.log('sharedContext', sharedContext);
 
     // The Matter Provider allows Client-Side injection of the data
     // to a shared React Client Provider even though the page is rendered

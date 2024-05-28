@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { useCopyToClipboard } from '@/hooks';
 
 import styles from './index.module.css';
+import { cn } from '@/util/cn';
 
 // Transforms a code element with plain text content into a more structured
 // format for rendering with line numbers
@@ -88,11 +89,7 @@ const CodeBox: FC<PropsWithChildren<CodeBoxProps>> = ({
   };
 
   return (
-    <div className={styles.root}>
-      <pre ref={ref} className={styles.content} tabIndex={0}>
-        {transformCode(children, language)}
-      </pre>
-
+    <div className={cn(styles.root, 'scrollbar')}>
       {language && (
         <div className={styles.footer}>
           <span className={styles.language}>{language}</span>
@@ -109,6 +106,9 @@ const CodeBox: FC<PropsWithChildren<CodeBoxProps>> = ({
           )}
         </div>
       )}
+      <pre ref={ref} className={styles.content} tabIndex={0}>
+        {transformCode(children, language)}
+      </pre>
     </div>
   );
 };

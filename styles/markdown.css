@@ -9,28 +9,29 @@ main {
         border-t-neutral-200
         bg-white
         dark:border-t-neutral-900
-        dark:bg-neutral-950;
+        dark:bg-neutral-950 my-4 md:my-8;
   }
 
   h1 {
-    @apply text-3xl;
+    @apply mt-2 scroll-m-20 text-4xl font-bold tracking-tight;
   }
 
   h2 {
-    @apply text-2xl;
+    @apply mt-10 scroll-m-20 border-b pb-1 text-3xl font-semibold tracking-tight first:mt-0;
   }
 
   h3 {
-    @apply text-xl;
+    @apply mt-8 scroll-m-20 text-2xl font-semibold tracking-tight;
   }
 
   h4 {
-    @apply text-lg;
+    @apply mt-8 scroll-m-20 text-xl font-semibold tracking-tight;
   }
-
-  h5,
+  h5 {
+    @apply mt-8 scroll-m-20 text-lg font-semibold tracking-tight;
+  }
   h6 {
-    @apply text-base;
+    @apply mt-8 scroll-m-20 text-base font-semibold tracking-tight;
   }
 
   h1,
@@ -40,49 +41,33 @@ main {
   h5,
   h6,
   strong {
-    @apply font-semibold
-        text-neutral-900
-        dark:text-white;
-  }
-
-  code {
-    @apply rounded
-        bg-neutral-100
-        px-1
-        font-mono
-        text-sm
-        text-neutral-900
-        dark:bg-neutral-900
-        dark:text-white;
-  }
-
-  p {
     @apply text-neutral-900
         dark:text-white;
   }
 
+  code {
+    @apply relative
+        rounded
+        px-4 py-[0.2rem] font-mono text-sm text-neutral-900 dark:bg-neutral-900 dark:text-white;
+  }
+
+  p {
+    @apply leading-7 text-neutral-900 dark:text-white [&:not(:first-child)]:mt-6;
+  }
+
   ul {
-    @apply list-disc
-        pl-9
-        pr-5
-        leading-6
-        text-neutral-900
-        dark:text-white;
+    @apply my-6 ml-6 list-disc leading-6 text-neutral-900 dark:text-white;
 
     li div:has(> pre) {
-      @apply !my-1;
+      @apply !mt-2;
     }
   }
 
   ol {
-    @apply list-decimal
-        px-5
-        leading-6
-        text-neutral-900
-        dark:text-white;
+    @apply my-6 ml-6 list-decimal leading-6 text-neutral-900 dark:text-white;
 
     li div:has(> pre) {
-      @apply !my-1;
+      @apply !mt-2;
     }
   }
 
@@ -98,23 +83,25 @@ main {
         text-sm
         dark:border-neutral-800;
 
-    th,
-    td {
+    th,td {
       @apply border
-          border-r-0
-          border-t-0
           border-neutral-200
-          px-4
-          py-2
           text-neutral-900
           dark:border-neutral-800
           dark:text-white
           xs:block
-          xs:border-l-0;
+          xs:border-l-0 ;
 
       > a {
         @apply pr-2;
       }
+    }
+
+    th{
+      @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right
+    }
+    td {
+      @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right
     }
 
     th {
