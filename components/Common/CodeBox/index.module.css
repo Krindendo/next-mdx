@@ -1,16 +1,15 @@
 .root {
-  @apply w-full
-      rounded-lg
-      border
-      border-neutral-800
-      mb-4 mt-6 max-h-[650px] overflow-x-auto bg-zinc-900 py-4 dark:bg-zinc-900 relative ;
+  @apply relative
+      mb-4
+      mt-6
+      max-h-[650px]
+      w-full overflow-x-auto rounded-lg border border-neutral-800 bg-zinc-900 py-4 dark:bg-zinc-900;
 
   .content {
     @apply m-0
         p-4 pt-2;
 
     & > code {
-
       @apply grid
           overflow-x-auto
           bg-transparent
@@ -29,7 +28,7 @@
 
         &:not(:empty:last-child)::before {
           @apply inline-block
-              content-[''] ;
+              content-[''];
         }
 
         &:not(:empty:last-child)::after {
@@ -49,25 +48,25 @@
   }
 
   & > .footer {
-    @apply flex
+    @apply sticky
+        top-0
+        flex
         items-center
         justify-between
         border-t
-        sticky
-        top-0
         border-t-neutral-900
         px-4
         text-sm
         font-medium;
 
     & > .language {
-      @apply text-neutral-300 bg-neutral-800 p-1.5 rounded;
+      @apply rounded bg-neutral-800 p-1.5 text-neutral-300;
     }
 
     & > .action {
-      @apply px-3
-          py-1.5
-          font-medium;
+      @apply gap-1
+          px-3
+          py-1.5 font-medium;
     }
   }
 }
