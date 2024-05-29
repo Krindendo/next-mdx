@@ -29,7 +29,9 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
   const pathname = usePathname();
   const sections = useStore(store, s => s.sections);
 
-  const isActiveGroup = items?.findIndex(link => link.href === pathname) !== -1;
+  const isActiveGroup = items?.findIndex(item => item.link === pathname) !== -1;
+
+  console.log('sections', sections);
 
   return (
     <li className={cn('relative mt-6', className)}>
@@ -42,7 +44,7 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
       <div className="relative mt-3 pl-2">
         <AnimatePresence>
           {isActiveGroup && (
-            <VisibleSectionHighlight group={items} pathname={pathname} />
+            <VisibleSectionHighlight group={items} pathname={pathname ?? ''} />
           )}
         </AnimatePresence>
         <motion.div
@@ -51,7 +53,7 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
         />
         <AnimatePresence initial={false}>
           {isActiveGroup && (
-            <ActivePageMarker group={items} pathname={pathname} />
+            <ActivePageMarker group={items} pathname={pathname ?? ''} />
           )}
         </AnimatePresence>
         <ul role="list" className="border-l border-transparent">
@@ -61,7 +63,7 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
                 {item.label}
               </NavLink>
               <AnimatePresence mode="popLayout" initial={false}>
-                {item.href === pathname && sections.items?.length ? (
+                {item.link === pathname && sections.items?.length ? (
                   <Tree tree={sections} />
                 ) : null}
               </AnimatePresence>

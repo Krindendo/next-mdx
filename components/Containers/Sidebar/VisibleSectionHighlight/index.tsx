@@ -38,7 +38,7 @@ const VisibleSectionHighlight: FC<VisibleSectionHighlightProps> = ({
 
   const top = useMemo(() => {
     const firstItemIndex =
-      group.items?.findIndex(item => item.href === pathname) ?? 0;
+      group.items?.findIndex(item => item.link === pathname) ?? 0;
     return firstItemIndex * itemHeight + firstVisibleSectionIndex * itemHeight;
   }, [group, itemHeight, firstVisibleSectionIndex, pathname]);
 

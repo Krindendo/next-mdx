@@ -10,7 +10,7 @@ const ActivePageMarker: FC<ActivePageMarkerProps> = ({ group, pathname }) => {
   const itemHeight = 28;
   const offset = 4;
   const activePageIndex =
-    group.items?.findIndex(item => item.href === pathname) ?? 0;
+    group.items?.findIndex(item => item.link === pathname) ?? 0;
   const top = offset + activePageIndex * itemHeight;
   return (
     <motion.div
