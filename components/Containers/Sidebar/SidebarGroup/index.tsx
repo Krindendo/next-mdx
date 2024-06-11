@@ -7,7 +7,7 @@ import { useStore } from 'zustand';
 
 import ActivePageMarker from '@/components/Containers/Sidebar/ActivePageMarker';
 import NavLink from '@/components/Containers/Sidebar/NavLink';
-import { useSectionStore } from '@/components/Containers/Sidebar/Provider';
+import { useSectionStore } from '@/providers/sidebarProvider';
 import Tree from '@/components/Containers/Sidebar/Tree';
 import VisibleSectionHighlight from '@/components/Containers/Sidebar/VisibleSectionHighlight';
 import { cn } from '@/util/cn';

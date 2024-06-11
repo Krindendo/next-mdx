@@ -2,7 +2,7 @@ import { motion, useIsPresent } from 'framer-motion';
 import { useMemo, type FC } from 'react';
 import { useStore } from 'zustand';
 
-import { useSectionStore } from '@/components/Containers/Sidebar/Provider';
+import { useSectionStore } from '@/providers/sidebarProvider';
 
 interface VisibleSectionHighlightProps {
   group: SidebarNavItem;
