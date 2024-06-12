@@ -3,9 +3,10 @@ import type { FC, PropsWithChildren } from 'react';
 import WithFooter from '@/components/withFooter';
 import WithNavBar from '@/components/withNavBar';
 import WithSidebar from '@/components/withSidebar';
+import { SectionProvider } from '@/providers/sidebarProvider';
 
 const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
-  <>
+  <SectionProvider>
     <div className="flex min-h-screen flex-row ">
       <div className="scrollbar lg:pointer-events-auto lg:block lg:w-72 lg:overflow-y-auto lg:border-r lg:border-zinc-900/10 lg:px-6 lg:pb-8 lg:pt-4 lg:dark:border-white/10 xl:w-80">
         <WithSidebar navKeys={['docs']} />
@@ -22,7 +23,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => (
         <WithFooter />
       </div>
     </div>
-  </>
+  </SectionProvider>
 );
 
 export default DefaultLayout;

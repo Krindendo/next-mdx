@@ -1,9 +1,10 @@
 'use client';
 
 import type { FC } from 'react';
-import { createContext, useRef, useContext, useEffect } from 'react';
-import type { StoreApi } from 'zustand';
-import { createStore, useStore } from 'zustand';
+import { createContext, useContext, useRef } from 'react';
+import { createStore } from 'zustand';
+
+import { useVisibleSections } from '@/hooks/react-client';
 
 interface Item {
   title: string;
@@ -15,13 +16,13 @@ interface TableOfContents {
   items: Item[];
 }
 
-interface SidebarState {
+export interface SidebarState {
   sections: TableOfContents;
   visibleSections: string[];
   sectionIds: string[];
 }
 
-type SidebarAction = {
+export type SidebarAction = {
   setSections: (sections: SidebarState['sections']) => void;
   setVisibleSections: (
     visibleSections: SidebarState['visibleSections']
@@ -117,119 +118,12 @@ const useSectionStore = () => {
   return store;
 };
 
-function useVisibleSections(
-  sectionStore: StoreApi<SidebarState & SidebarAction>
-) {
-  const sectionIds = useStore(sectionStore, s => s.sectionIds);
-  const updateVisibleSection = useStore(
-    sectionStore,
-    s => s.updateVisibleSection
-  );
-  const removeVisibleSection = useStore(
-    sectionStore,
-    s => s.removeVisibleSection
-  );
+export { SectionProvider, useSectionStore };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          const { innerHeight, scrollY } = window;
-          const currentEntryIndex = sectionIds.findIndex(
-            id => id === entry.target.id
-          );
+/* TableOfContents */
 
-          const prevEntryId = sectionIds[currentEntryIndex - 1];
-          const nextEntryId = sectionIds[currentEntryIndex + 1];
+/*
 
-          const prevEntryTop =
-            (document.getElementById(prevEntryId)?.getBoundingClientRect()
-              .top ?? Infinity) + scrollY;
-          const currentEntry = entry.boundingClientRect.top + scrollY;
-          const nextEntryBottom =
-            (document.getElementById(nextEntryId)?.getBoundingClientRect()
-              .top ?? Infinity) + scrollY;
+items: [{url: "#usestate", title: "useState", items: [{url: '#set-function', title: 'Set function'}, {url: '#example-update-value-in-current-render', title: 'Example: update value in current render'}]}]
 
-          // console.log("entryId: ", entry.target.id)
-          // console.log("prevEntryBox: ", prevEntryTop, currentEntry)
-          // console.log("currentEntryBox: ", currentEntry, nextEntryBottom)
-
-          const navbarHeight = 56;
-          const screenTop = scrollY + navbarHeight;
-          const screenBottom = scrollY + innerHeight;
-
-          // console.log("visible top", screenTop)
-          // console.log("visible bottom", visibleBottom)
-
-          if (
-            (prevEntryTop > screenTop && prevEntryTop < screenBottom) ||
-            (currentEntry > screenTop && currentEntry < screenBottom) ||
-            (prevEntryTop <= screenTop && currentEntry >= screenBottom)
-          ) {
-            //console.log("add prevEntry: ", prevEntryId)
-            updateVisibleSection(prevEntryId);
-          } else {
-            //console.log("remove prevEntry: ", prevEntryId)
-            removeVisibleSection(prevEntryId);
-          }
-
-          if (
-            (currentEntry > screenTop && currentEntry < screenBottom) ||
-            (nextEntryBottom > screenTop && nextEntryBottom < screenBottom) ||
-            (currentEntry <= screenTop && nextEntryBottom >= screenBottom)
-          ) {
-            //console.log("add entry: ", entry.target.id)
-            updateVisibleSection(entry.target.id);
-          } else {
-            //console.log("remove entry: ", entry.target.id)
-            removeVisibleSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '-55px 0px 1px 0px',
-        threshold: [0, 1],
-      }
-    );
-
-    sectionIds?.forEach(id => {
-      if (id === undefined) {
-        return null;
-      }
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
-      sectionIds.forEach(id => {
-        if (id === undefined) {
-          return null;
-        }
-        const element = document.getElementById(id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
-  }, [sectionIds]);
-}
-
-const InjectTOC: FC<{ toc: TableOfContents }> = ({ toc }) => {
-  const store = useSectionStore();
-  const setSections = useStore(store, s => s.setSections);
-  const setSectionIds = useStore(store, s => s.setSectionIds);
-  const setVisibleSections = useStore(store, s => s.setVisibleSections);
-
-  useEffect(() => {
-    setSections(toc);
-    setSectionIds(toc);
-    setVisibleSections([]);
-  }, [toc, setSections, setSectionIds, setVisibleSections]);
-
-  return null;
-};
-
-export { SectionProvider, useSectionStore, InjectTOC };
+*/
