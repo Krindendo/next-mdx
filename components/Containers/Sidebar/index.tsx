@@ -1,4 +1,4 @@
-import type { ComponentProps, FC } from 'react';
+import { type ComponentProps, type FC } from 'react';
 
 import SidebarGroup from '@/components/Containers/Sidebar/SidebarGroup';
 import { cn } from '@/util/cn';

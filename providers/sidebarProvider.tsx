@@ -5,16 +5,7 @@ import { createContext, useContext, useRef } from 'react';
 import { createStore } from 'zustand';
 
 import { useVisibleSections } from '@/hooks/react-client';
-
-interface Item {
-  title: string;
-  url: string;
-  items?: Item[];
-}
-
-interface TableOfContents {
-  items: Item[];
-}
+import { TableOfContents } from '@/util/toc';
 
 export interface SidebarState {
   sections: TableOfContents;
@@ -119,11 +110,3 @@ const useSectionStore = () => {
 };
 
 export { SectionProvider, useSectionStore };
-
-/* TableOfContents */
-
-/*
-
-items: [{url: "#usestate", title: "useState", items: [{url: '#set-function', title: 'Set function'}, {url: '#example-update-value-in-current-render', title: 'Example: update value in current render'}]}]
-
-*/

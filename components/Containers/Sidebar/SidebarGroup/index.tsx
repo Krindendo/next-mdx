@@ -2,17 +2,18 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import type { ComponentProps, FC } from 'react';
+import { type ComponentProps, type FC } from 'react';
 import { useStore } from 'zustand';
 
 import ActivePageMarker from '@/components/Containers/Sidebar/ActivePageMarker';
 import NavLink from '@/components/Containers/Sidebar/NavLink';
-import { useSectionStore } from '@/providers/sidebarProvider';
 import Tree from '@/components/Containers/Sidebar/Tree';
 import VisibleSectionHighlight from '@/components/Containers/Sidebar/VisibleSectionHighlight';
+import { useSectionStore } from '@/providers/sidebarProvider';
 import { cn } from '@/util/cn';
 
 import type SidebarItem from '@/components/Containers/Sidebar/SidebarItem';
+import { InjectTOC } from '@/providers/testNesto';
 
 type SidebarGroupProps = {
   groupName: string;
@@ -30,6 +31,8 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
   const sections = useStore(store, s => s.sections);
 
   const isActiveGroup = items?.findIndex(item => item.link === pathname) !== -1;
+
+  InjectTOC({}); //privremeno resenje
 
   console.log('sections', sections);
 
