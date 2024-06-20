@@ -1,15 +1,13 @@
 'use client';
 
-import type { FC } from 'react';
 import { useEffect } from 'react';
 import { useStore } from 'zustand';
 
 import { useClientContext } from '@/hooks/react-client';
-
-import { useSectionStore } from './sidebarProvider';
+import { useSectionStore } from '@/providers/sidebarProvider';
 import { transformHeadingsToTOC } from '@/util/toc';
 
-const InjectTOC: FC<{}> = () => {
+const useSetTOC = () => {
   const { headings } = useClientContext();
 
   const store = useSectionStore();
@@ -21,9 +19,11 @@ const InjectTOC: FC<{}> = () => {
     setSections(transformHeadingsToTOC(headings));
     setSectionIds(transformHeadingsToTOC(headings));
     setVisibleSections([]);
+
+    return undefined;
   }, [headings, setSections, setSectionIds, setVisibleSections]);
 
-  return null;
+  return undefined;
 };
 
-export { InjectTOC };
+export default useSetTOC;

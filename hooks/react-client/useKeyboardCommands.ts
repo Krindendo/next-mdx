@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 
 type KeyboardCommand = 'cmd-k' | 'escape' | 'down' | 'up' | 'enter';

@@ -13,7 +13,7 @@ import { useSectionStore } from '@/providers/sidebarProvider';
 import { cn } from '@/util/cn';
 
 import type SidebarItem from '@/components/Containers/Sidebar/SidebarItem';
-import { InjectTOC } from '@/providers/testNesto';
+import { useSetTOC } from '@/hooks';
 
 type SidebarGroupProps = {
   groupName: string;
@@ -32,9 +32,9 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
 
   const isActiveGroup = items?.findIndex(item => item.link === pathname) !== -1;
 
-  InjectTOC({}); //privremeno resenje
+  //console.log('sections', sections);
 
-  console.log('sections', sections);
+  useSetTOC();
 
   return (
     <li className={cn('relative mt-6', className)}>
