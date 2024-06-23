@@ -32,8 +32,6 @@ const SidebarGroup: FC<SidebarGroupProps> = ({
 
   const isActiveGroup = items?.findIndex(item => item.link === pathname) !== -1;
 
-  //console.log('sections', sections);
-
   useSetTOC();
 
   return (

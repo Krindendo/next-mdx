@@ -78,7 +78,7 @@ const createSectionStore = () => {
           .filter(Boolean)
           .map(id => id?.split('#')[1]);
 
-        return { sectionIds };
+        return { sectionIds: ['_top', ...sectionIds] as string[] };
       }),
   }));
 };
