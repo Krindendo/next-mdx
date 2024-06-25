@@ -4,12 +4,12 @@ main {
       flex-col;
 
   hr {
-    @apply w-full
+    @apply my-4
+        w-full
         border-t
         border-t-neutral-200
         bg-white
-        dark:border-t-neutral-900
-        dark:bg-neutral-950 my-4 md:my-8;
+        dark:border-t-neutral-900 dark:bg-neutral-950 md:my-8;
   }
 
   h1 {
@@ -48,7 +48,7 @@ main {
   code {
     @apply relative
         rounded
-        px-4 py-[0.2rem] font-mono text-sm text-neutral-900 dark:bg-neutral-900 dark:text-white;
+        px-3 py-2 font-mono text-sm text-neutral-900 dark:bg-neutral-900 dark:text-white;
   }
 
   p {
@@ -83,25 +83,26 @@ main {
         text-sm
         dark:border-neutral-800;
 
-    th,td {
+    th,
+    td {
       @apply border
           border-neutral-200
           text-neutral-900
           dark:border-neutral-800
           dark:text-white
           xs:block
-          xs:border-l-0 ;
+          xs:border-l-0;
 
       > a {
         @apply pr-2;
       }
     }
 
-    th{
-      @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right
+    th {
+      @apply border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right;
     }
     td {
-      @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right
+      @apply border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right;
     }
 
     th {
