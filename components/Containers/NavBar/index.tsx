@@ -12,6 +12,7 @@ import ThemeToggle from '@/components/Common/ThemeToggle';
 import GitHub from '@/components/Icons/Social/GitHub';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/util/cn';
+import SidebarMobile from '../SidebarMobile';
 
 // const navInteractionIcons = {
 //   show: <Menu />,
@@ -51,6 +52,7 @@ const NavBar = forwardRef<HTMLDivElement, NavbarProps>(
           } as React.CSSProperties
         }
       >
+        <SidebarMobile />
         <div className="absolute inset-x-0 top-full h-px bg-zinc-900/10 transition dark:bg-white/10" />
         <div className="hidden flex-1 flex-col peer-checked:flex md:flex md:flex-row md:items-center">
           <div className="lg:block lg:max-w-sm lg:flex-auto">
